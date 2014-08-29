@@ -1,7 +1,7 @@
 {
-  "name": "template",
+  "name": "wine-seller",
   "version": "0.0.0",
-  "description": "Node.js/Express Template",
+  "description": "Wine trading marketplace application with login",
   "main": "app/index.js",
   "directories": {
     "test": "test"
@@ -22,14 +22,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nss-cohort-2014-06-07/template"
+    "url": "https://github.com/lizahcarter/wine-seller"
   },
-  "author": "Chyld Medford <chyld.medford@gmail.com>",
+  "author": "Liza Carter <lizahcarter@gmail.com>",
+  "contributors": "Adam Barnhard, Daniel Roden, and Mark Supalla",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nss-cohort-2014-06-07/template/issues"
+    "url": "https://github.com/lizahcarter/wine-seller/issues"
   },
-  "homepage": "https://github.com/nss-cohort-2014-06-07/template",
+  "homepage": "https://github.com/lizahcarter/wine-seller",
   "dependencies": {
     "async": "^0.9.0",
     "bcrypt": "^0.8.0",
