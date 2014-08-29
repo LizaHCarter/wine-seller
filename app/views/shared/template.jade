@@ -1,0 +1,26 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Template
+    link(href='/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    include nav
+    .container-fluid
+      .row
+        .col-xs-12
+          block content
+
+    script(src='/js/vendor/jquery-2.1.1.min.js')
+    script(src='/js/vendor/async.js')
+    script(src='/js/vendor/underscore-min.js')
+    script(src='/js/vendor/underscore-contrib.min.js')
+    script(src='/js/vendor/moment.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='/js/user/main.js')
+
+    block scripts
+

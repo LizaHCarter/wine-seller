@@ -1,0 +1,17 @@
+extends ../shared/template
+block content
+  h2 Register
+  .row
+    .col-xs-6
+      form(role='form', method='post', action='/register')
+        .form-group
+          label(for='email') Email
+          input.form-control#email(type='email', name='email', autofocus=true)
+        .form-group
+          label(for='password') Password
+          input.form-control#password(type='password', name='password')
+        button.btn.btn-primary(type='submit') Submit
+    .col-xs-6
+
+block scripts
+

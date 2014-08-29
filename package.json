@@ -1,0 +1,65 @@
+{
+  "name": "template",
+  "version": "0.0.0",
+  "description": "Node.js/Express Template",
+  "main": "app/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "bin": {
+    "coveralls": "./node_modules/coveralls/bin/coveralls.js"
+  },
+  "scripts": {
+    "test": "mocha test --recursive -R spec --timeout 5000",
+    "watch": "mocha test --recursive -R spec --watch --timeout 5000",
+    "syntax": "./node_modules/grunt-cli/bin/grunt build",
+    "coveralls": "mocha test --recursive -r blanket -R mocha-lcov-reporter | coveralls"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "/app/"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nss-cohort-2014-06-07/template"
+  },
+  "author": "Chyld Medford <chyld.medford@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nss-cohort-2014-06-07/template/issues"
+  },
+  "homepage": "https://github.com/nss-cohort-2014-06-07/template",
+  "dependencies": {
+    "async": "^0.9.0",
+    "bcrypt": "^0.8.0",
+    "body-parser": "^1.6.6",
+    "chalk": "^0.5.1",
+    "connect-redis": "^2.1.0",
+    "express": "^4.8.6",
+    "express-method-override": "0.0.3",
+    "express-session": "^1.7.6",
+    "jade": "^1.5.0",
+    "less-middleware": "^1.0.4",
+    "moment": "^2.8.2",
+    "mongodb": "^1.4.9",
+    "morgan": "^1.2.3",
+    "multiparty": "^3.3.2",
+    "request": "^2.40.0",
+    "underscore-contrib": "^0.3.0"
+  },
+  "devDependencies": {
+    "blanket": "^1.1.6",
+    "chai": "^1.9.1",
+    "coveralls": "^2.11.1",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jscs": "^0.6.2",
+    "jshint-stylish": "^0.4.0",
+    "mocha": "^1.21.4",
+    "mocha-lcov-reporter": "0.0.1",
+    "supertest": "^0.13.0"
+  }
+}
