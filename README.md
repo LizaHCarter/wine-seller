@@ -1,14 +1,10 @@
-## name of project
+## Wine Seller
 ### Code Badges
 build status icon
 coverage status icon
 
-### Screenshots
-![Image1](https://raw.githubusercontent.com/nss-cohort-2014-06-07/express-template/master/docs/screenshots/one.jpg)
-![Image2](https://raw.githubusercontent.com/nss-cohort-2014-06-07/express-template/master/docs/screenshots/two.jpg)
-
 ### Description
-write a description about your project
+An app for sommeliers to trade vintage and rare wines.
 
 ### Models
 ```
@@ -40,7 +36,10 @@ $ npm test
 ```
 
 ### Contributors
-- [Chyld Medford](https://github.com/chyld)
+- [Liza Carter](https://github.com/lizahcarter)
+- [DS](https://github.com/dsroden)
+- [Mark Supalla](https://github.com/marksupalla)
+- [Adam Barnhard](https://github.com/abarnhard)
 
 ### License
 [MIT](LICENSE)
