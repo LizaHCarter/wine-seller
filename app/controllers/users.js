@@ -1,6 +1,7 @@
 'use strict';
 
-var User = require('../models/user');
+var User = require('../models/user'),
+    Item = require('../models/item');
 
 exports.new = function(req, res){
   res.render('users/new');
@@ -38,6 +39,12 @@ exports.authenticate = function(req, res){
     }else{
       res.redirect('/login');
     }
+  });
+};
+
+exports.profile = function(req, res){
+  Item.findAllForUser(res.locals.user._id, function(err, items){
+    res.render('users/profile', {items:items});
   });
 };
 
