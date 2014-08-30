@@ -2,7 +2,7 @@
 
 'use strict';
 
-process.env.DB   = 'template-test';
+process.env.DB   = 'wine-seller-test';
 
 var expect  = require('chai').expect,
     cp      = require('child_process'),
@@ -89,20 +89,5 @@ describe('users', function(){
       });
     });
   });
-
-  describe('post /items', function(){
-    it('should redirect to the profile page', function(done){
-      request(app)
-      .post('/items')
-      .set('cookie', cookie)
-      .send('name=Red+Wine&photo=http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fc%2Fcc%2FFrench_beaujolais_red_wine_bottle.jpg&tags=red%2C+wine&location=Nashville%2C+TN%2C+USA&description=Red+Wine')
-      .end(function(err, res){
-        expect(res.status).to.equal(302);
-        expect(res.headers.location).to.equal('/profile');
-        done();
-      });
-    });
-  });
-
 });
 
