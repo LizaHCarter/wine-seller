@@ -90,5 +90,33 @@ describe('users', function(){
     });
   });
 
+  describe('get /profile/edit', function(){
+    it('should show the update/edit profile page', function(done){
+      request(app)
+      .get('/profile/edit')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('name');
+        expect(res.text).to.include('email');
+        done();
+      });
+    });
+  });
+
+  describe('put /profile', function(){
+    it('should show updated profile page', function(done){
+      request(app)
+      .put('/profile')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/profile');
+        done();
+      });
+    });
+  });
 });
+
+
 

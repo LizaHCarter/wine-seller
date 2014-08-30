@@ -28,5 +28,21 @@ describe('User', function(){
       expect(u).to.be.instanceof(User);
     });
   });
+
+  describe('#save', function(){
+    it('should save a user to the database', function(done){
+      console.log('*****Made it to line 34');
+      var mark = {name:'Mark', email:'mark@gmail.com', photo:'http://mark.img', phone:'615-555-5555', password:'5555'};
+      User.findById('000000000000000000000001', function(err, user){
+        console.log(user);
+        user.save(mark, function(){
+          expect(user.name).to.equal('Mark');
+          done();
+        });
+      });
+    });
+  });
+
 });
+
 

@@ -1,0 +1,30 @@
+extends ../shared/template
+block content
+  h2 Edit Profile
+  .row
+    .col-xs-6
+      form(role='form', method='post', action='/profile')
+        input(type='hidden', name='_method', value='put')
+        .form-group
+          label(for='name') Name
+          input.form-control#name(type='text', name='name', value=user.name, autofocus=true)
+        .form-group
+          label(for='email') Email
+          input.form-control#email(type='email', name='email', value=user.email)
+        .form-group
+          label(for='phone') Phone
+          input.form-control#phone(type='tel', name='phone', value=user.phone)
+        .form-group
+          label(for='photo') Photo
+          input.form-control#photo(type='text', name='photo', value=user.photo)
+        .form-group
+          label(for='bio') Bio
+          input.form-control#bio(type='text', name='bio', value=user.bio)
+        .form-group
+          label(for='favorite') Favorite Wine
+          input.form-control#favorite(type='text', name='favorite Wine', value=user.favorite)
+
+        button.btn.btn-primary(type='submit') Update Profile
+    .col-xs-6
+
+block scripts

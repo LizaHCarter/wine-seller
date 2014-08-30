@@ -47,4 +47,13 @@ exports.profile = function(req, res){
     res.render('users/profile', {items:items});
   });
 };
+exports.edit = function(req, res){
+  res.render('users/edit');
+};
 
+exports.update = function(req, res){
+  res.locals.user.save(req.body, function(){
+    console.log(req.body);
+    res.redirect('/profile');
+  });
+};
