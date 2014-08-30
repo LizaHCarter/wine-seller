@@ -51,5 +51,16 @@ describe('Item', function(){
     });
   });
 
+  describe('.findAllForUser', function(){
+    it('should return all items owned by the user in the database', function(done){
+      var id = Mongo.ObjectID('000000000000000000000001');
+      Item.findAllForUser(id, function(err, items){
+        expect(items).to.have.length(2);
+        expect(items[1].numBids).to.equal(1);
+        done();
+      });
+    });
+  });
+
 });
 
