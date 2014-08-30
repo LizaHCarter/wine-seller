@@ -1,11 +1,21 @@
 'use strict';
 
-var bcrypt = require('bcrypt'),
-    Mongo  = require('mongodb'),
+var Mongo  = require('mongodb'),
     async  = require('async'),
     Bid    = require('./bid');
 
-function Item(){
+function Item(o){
+  this.name = o.name;
+  this.location = o.location;
+  this.lat = o.lat * 1;
+  this.lng = o.lng * 1;
+  this.description = o.description;
+  this.tags = o.tags.split(',').map(function(s){return s.trim();});
+  this.photo = o.photo;
+  this.ownerId = o.ownerId;
+  this.isBiddable = false;
+  this.onSale = false;
+  this.datePosted = new Date();
 }
 
 Object.defineProperty(Item, 'collection', {
@@ -23,12 +33,9 @@ Item.findAllForUser = function(userId, cb){
   });
 };
 
-Item.register = function(o, cb){
-  Item.collection.findOne({email:o.email}, function(err, Item){
-    if(Item){return cb();}
-    o.password = bcrypt.hashSync(o.password, 10);
-    Item.collection.save(o, cb);
-  });
+Item.create = function(data, cb){
+  var i = new Item(data);
+  Item.collection.save(i, cb);
 };
 
 module.exports = Item;
