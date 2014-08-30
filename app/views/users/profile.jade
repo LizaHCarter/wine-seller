@@ -1,0 +1,78 @@
+extends ../shared/template
+block content
+  h2 Profile
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-xs-6
+          h3= user.name
+        .col-xs-6
+          h5: a(href='/profile/edit') Update Profile
+      .row
+        .col-xs-4
+          table.table.table-bordered
+            tbody
+              each prop in Object.keys(user)
+                unless prop === '_id' || prop === 'password' || prop === 'photo' || prop === 'isPublic' || prop === 'tagline' || prop === 'name'
+                  tr
+                    td= prop.charAt(0).toUpperCase() + prop.substring(1)
+                    td= user[prop]
+        .col-xs-4
+          .row
+            .col-xs-12
+              if user.photo
+                .profile-photo(style='background-image:url(#{user.photo});')
+        .col-xs-4
+          form(role='form', method='post', action='/items')
+            .form-group
+              label Name
+              input.form-control(name='name', type='text', placeholder='Red Wine')
+            .form-group
+              label Photo
+              input.form-control(name='photo', type='text', placeholder='http://example.com/pic.jpg')
+            .form-group
+              label Tags
+              input.form-control(name='tags', type='text', placeholder='red wine, 1998, Nappa Valley')
+            .form-group
+              label Location
+              input.form-control(name='location', type='text', placeholder='Nashville, TN')
+            .form-group
+              label Description
+              textarea.form-control(name='description')
+            button.btn.btn-default(type='submit') Add Vintage
+      .row
+        .col-xs-6
+          table.table
+            thead
+              tr
+                th Photo
+                th Name
+                th Out for Trade?
+                th Mark For Sale
+            tbody
+              each item in items
+                unless item.onSale
+                  tr
+                    td.item-photo(style='background-image:url(#{item.photo});')
+                    td= item.name
+                    td= item.isBiddable
+                    td Checkbox + submit button
+        .col-xs-1
+        .col-xs-5
+          table.table
+            thead
+              tr
+                th Photo
+                th Name
+                th # Bids
+            tbody
+              each item in items
+                if item.onSale
+                  tr
+                    td.item-photo(style='background-image:url(#{item.photo});')
+                    td: a(href='/items/#{item._id}')= item.name
+                    td= item.numBids
+
+block scripts
+  script(src='/js/user/profile.js')
+
