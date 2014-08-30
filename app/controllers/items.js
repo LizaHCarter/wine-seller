@@ -9,3 +9,8 @@ exports.create = function(req, res){
   });
 };
 
+exports.index = function(req, res){
+  Item.findForSale(req.query, function(err, items){
+    res.render('items/index', {items:items});
+  });
+};

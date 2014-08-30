@@ -62,5 +62,15 @@ describe('Item', function(){
     });
   });
 
+  describe('.findForSale', function(){
+    it('should find items in database that are for sale based on query parameters', function(done){
+      Item.findForSale({}, function(err, items){
+        expect(items).to.have.length(1);
+        expect(items[0].name).to.equal('White Wine');
+        done();
+      });
+    });
+  });
+
 });
 
