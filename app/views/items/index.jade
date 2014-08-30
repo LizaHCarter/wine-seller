@@ -1,0 +1,28 @@
+extends ../shared/template
+block content
+  h2 Profile
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-xs-12
+          #marketplace-map
+      .row
+        .col-xs-12
+          table.table
+            thead
+              tr
+                th Photo
+                th Name
+                th Location
+                th Description
+            tbody
+              each item in items
+                tr.item(data-loc='#{item.location}', data-lat='#{item.lat}', data-lng='#{item.lng}')
+                  td.item-photo(style='background-image:url(#{item.photo})')
+                  td: a(href='/items/#{item._id}')= item.name
+                  td= item.location
+                  td= item.description
+
+block scripts
+  script(src='/js/user/items-index.js')
+

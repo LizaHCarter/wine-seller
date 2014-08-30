@@ -62,5 +62,26 @@ describe('Item', function(){
     });
   });
 
+  describe('.findForSale', function(){
+    it('should find items in database that are for sale based on query parameters', function(done){
+      Item.findForSale({}, function(err, items){
+        expect(items).to.have.length(1);
+        expect(items[0].name).to.equal('White Wine');
+        done();
+      });
+    });
+  });
+
+  describe('.markForSale', function(){
+    it('should set an item onSale to true', function(done){
+      Item.markOnSale('a00000000000000000000001', function(){
+        Item.findById('a00000000000000000000001', function(err, item){
+          expect(item.onSale).to.be.true;
+          done();
+        });
+      });
+    });
+  });
+
 });
 
