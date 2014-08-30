@@ -9,3 +9,9 @@ exports.create = function(req, res){
   });
 };
 
+exports.markonsale = function(req, res){
+  Item.markOnSale(req.params.itemId, function(){
+    res.redirect('/profile');
+  });
+};
+

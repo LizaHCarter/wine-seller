@@ -38,6 +38,11 @@ Item.create = function(data, cb){
   Item.collection.save(i, cb);
 };
 
+Item.markOnSale = function(itemId, cb){
+  var _id = Mongo.ObjectID(itemId);
+  Item.collection.update({_id:_id}, {$set: {onSale: true}}, cb);
+};
+
 module.exports = Item;
 
 function getNumberOfBids(item, cb){

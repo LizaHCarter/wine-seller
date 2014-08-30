@@ -62,5 +62,15 @@ describe('Item', function(){
     });
   });
 
+  describe('.markForSale', function(){
+    it('should set an item onSale to true', function(done){
+      Item.markOnSale('a00000000000000000000001', function(){
+        Item.findById('a00000000000000000000001', function(err, item){
+          expect(item.onSale).to.be.true;
+          done();
+        });
+      });
+    });
+  });
 });
 
