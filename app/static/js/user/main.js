@@ -24,5 +24,6 @@ function cartographer(cssId, lat, lng, zoom){
 function addMarker(map, lat, lng, name, icon){
   'use strict';
   var latLng = new google.maps.LatLng(lat, lng);
+  // console.log(latLng);
   new google.maps.Marker({map: map, position: latLng, title: name, animation: google.maps.Animation.DROP, icon: icon});
 }
