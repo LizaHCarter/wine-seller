@@ -44,5 +44,13 @@ User.prototype.save = function(o, cb){
   User.collection.save(self, cb);
 };
 
+User.findAll = function(cb){
+  User.collection.find().toArray(cb);
+};
+
+User.findOne = function(filter, cb){
+  User.collection.findOne(filter, cb);
+};
+
 module.exports = User;
 

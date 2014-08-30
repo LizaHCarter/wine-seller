@@ -57,3 +57,19 @@ exports.update = function(req, res){
     res.redirect('/profile');
   });
 };
+
+exports.index = function(req, res){
+  User.findAll(function(err, users){
+    res.render('users/index', {users:users});
+  });
+};
+
+exports.trader = function(req, res){
+  User.findOne({email:req.params.email}, function(err, trader){
+    if(trader){
+      res.render('users/trader', {trader:trader});
+    }else{
+      res.redirect('/users');
+    }
+  });
+};
