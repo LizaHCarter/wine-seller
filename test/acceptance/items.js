@@ -41,6 +41,20 @@ describe('users', function(){
     });
   });
 
+  describe('get /marketplace', function(){
+    it('should display the marketplace page', function(done){
+      request(app)
+      .get('/marketplace')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Marketplace');
+        expect(res.text).to.include('White Wine');
+        done();
+      });
+    });
+  });
+
   describe('put /profile', function(){
     it('should redirect to the profile page after item is put on sale', function(done){
       request(app)
