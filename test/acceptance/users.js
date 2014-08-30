@@ -19,8 +19,7 @@ describe('users', function(){
     cp.execFile(__dirname + '/../scripts/clean-db.sh', [process.env.DB], {cwd:__dirname + '/../scripts'}, function(err, stdout, stderr){
       request(app)
       .post('/login')
-      .send('email=nodetestapp+bob@gmail.com')
-      .send('password=1234')
+      .send('email=nodeapptest%2Bbob%40gmail.com&password=1234')
       .end(function(err, res){
         cookie = res.headers['set-cookie'][0];
         done();
@@ -53,6 +52,32 @@ describe('users', function(){
     });
   });
 
+  describe('get /login', function(){
+    it('should return the login page', function(done){
+      request(app)
+      .get('/login')
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Login');
+        done();
+      });
+    });
+  });
+
+  describe('post /login', function(){
+    it('should redirect to the home page', function(done){
+      request(app)
+      .post('/login')
+      .send('email=nodeapptest%2Bbob%40gmail.com&password=1234')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/');
+        done();
+      });
+    });
+  });
+
+/*
   describe('get /profile', function(){
     it('should show the users profile page', function(done){
       request(app)
@@ -65,6 +90,6 @@ describe('users', function(){
       });
     });
   });
-
+*/
 });
 
