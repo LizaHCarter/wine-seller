@@ -1,36 +1,49 @@
 'use strict';
 
-var bcrypt = require('bcrypt'),
-    Mongo  = require('mongodb');
+var Mongo  = require('mongodb'),
+    async  = require('async'),
+    Bid    = require('./bid');
 
-function User(){
+function Item(o){
+  this.name = o.name;
+  this.location = o.location;
+  this.lat = o.lat * 1;
+  this.lng = o.lng * 1;
+  this.description = o.description;
+  this.tags = o.tags.split(',').map(function(s){return s.trim();});
+  this.photo = o.photo;
+  this.ownerId = o.ownerId;
+  this.isBiddable = false;
+  this.onSale = false;
+  this.datePosted = new Date();
 }
 
-Object.defineProperty(User, 'collection', {
-  get: function(){return global.mongodb.collection('users');}
+Object.defineProperty(Item, 'collection', {
+  get: function(){return global.mongodb.collection('items');}
 });
 
-User.findById = function(id, cb){
+Item.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
-  User.collection.findOne({_id:_id}, cb);
+  Item.collection.findOne({_id:_id}, cb);
 };
 
-User.register = function(o, cb){
-  User.collection.findOne({email:o.email}, function(err, user){
-    if(user){return cb();}
-    o.password = bcrypt.hashSync(o.password, 10);
-    User.collection.save(o, cb);
+Item.findAllForUser = function(userId, cb){
+  Item.collection.find({ownerId:userId}).toArray(function(err, items){
+    async.map(items, getNumberOfBids, cb);
   });
 };
 
-User.authenticate = function(o, cb){
-  User.collection.findOne({email:o.email}, function(err, user){
-    if(!user){return cb();}
-    var isOk = bcrypt.compareSync(o.password, user.password);
-    if(!isOk){return cb();}
-    cb(user);
-  });
+Item.create = function(data, cb){
+  var i = new Item(data);
+  Item.collection.save(i, cb);
 };
 
-module.exports = User;
+module.exports = Item;
+
+function getNumberOfBids(item, cb){
+  Bid.countItemBids(item._id, function(err, count){
+    item.numBids = count;
+    cb(null, item);
+  });
+}
 

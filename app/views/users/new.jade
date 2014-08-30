@@ -5,8 +5,17 @@ block content
     .col-xs-6
       form(role='form', method='post', action='/register')
         .form-group
+          label(for='name') Name
+          input.form-control#name(type='text', name='name', autofocus=true)
+        .form-group
+          label(for='photo') Photo
+          input.form-control#photo(type='text', name='photo', placeholder='http://example.com/pic.jpg')
+        .form-group
           label(for='email') Email
-          input.form-control#email(type='email', name='email', autofocus=true)
+          input.form-control#email(type='email', name='email')
+        .form-group
+          label(for='phone') Phone
+          input.form-control#phone(type='text', name='phone', placeholder='xxx-xxx-xxxx')
         .form-group
           label(for='password') Password
           input.form-control#password(type='password', name='password')
