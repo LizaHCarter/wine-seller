@@ -19,7 +19,7 @@ block content
               each item in items
                 tr.item(data-loc='#{item.location}', data-lat='#{item.lat}', data-lng='#{item.lng}')
                   td.item-photo(style='background-image:url(#{item.photo})')
-                  td: a(href='/items/#{item._id}')= item.name
+                  td: a(href='/bid/#{item._id}')= item.name
                   td= item.location
                   td= item.description
 
