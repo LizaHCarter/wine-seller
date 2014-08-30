@@ -45,6 +45,11 @@ Item.findForSale = function(query, cb){
   Item.collection.find(filter).sort(sort).toArray(cb);
 };
 
+Item.markOnSale = function(itemId, cb){
+  var _id = Mongo.ObjectID(itemId);
+  Item.collection.update({_id:_id}, {$set: {onSale: true}}, cb);
+};
+
 module.exports = Item;
 
 function getNumberOfBids(item, cb){

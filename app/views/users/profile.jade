@@ -23,7 +23,7 @@ block content
               if user.photo
                 .profile-photo(style='background-image:url(#{user.photo});')
         .col-xs-4
-          form(role='form', method='post', action='/items')
+          form#newItem(role='form', method='post', action='/items')
             .form-group
               label Name
               input.form-control(name='name', type='text', placeholder='Red Wine')
@@ -39,7 +39,7 @@ block content
             .form-group
               label Description
               textarea.form-control(name='description')
-            button.btn.btn-default(type='submit') Add Vintage
+            button#submitItem.btn.btn-default(type='submit') Add Vintage
       .row
         .col-xs-6
           table.table
@@ -48,15 +48,22 @@ block content
                 th Photo
                 th Name
                 th Out for Trade?
-                th Mark For Sale
+                th Want to Trade?
             tbody
               each item in items
                 unless item.onSale
                   tr
                     td.item-photo(style='background-image:url(#{item.photo});')
                     td= item.name
-                    td= item.isBiddable
-                    td Checkbox + submit button
+                    if(!item.isBiddable)
+                      td No
+                    if(item.isBiddable)
+                      td Yes
+                    td
+                      form(method='post', action='/items/#{item._id}')
+                        input(type='hidden', name='_method', value='put')
+                        button(type='submit') Trade
+
         .col-xs-1
         .col-xs-5
           table.table

@@ -5,16 +5,16 @@
   'use strict';
 
   $(document).ready(function(){
-    $('button[type=submit]').click(geocodeAndSubmit);
+    $('#submitItem').click(geocodeAndSubmit);
   });
 
   function geocodeAndSubmit(e){
     var location = $('input[name=location]').val();
     geocode(location, function(name, lat, lng){
       $('input[name=location]').val(name);
-      $('form').append('<input name="lat" value="'+lat+'" type="hidden">');
-      $('form').append('<input name="lng" value="'+lng+'" type="hidden">');
-      $('form').submit();
+      $('#newItem').append('<input name="lat" value="'+lat+'" type="hidden">');
+      $('#newItem').append('<input name="lng" value="'+lng+'" type="hidden">');
+      $('#newItem').submit();
     });
     e.preventDefault();
   }

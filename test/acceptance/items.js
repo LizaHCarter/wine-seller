@@ -55,5 +55,19 @@ describe('users', function(){
     });
   });
 
+  describe('put /profile', function(){
+    it('should redirect to the profile page after item is put on sale', function(done){
+      request(app)
+      .post('/items/a00000000000000000000001')
+      .send('_method=put')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/profile');
+        done();
+      });
+    });
+  });
+
 });
 

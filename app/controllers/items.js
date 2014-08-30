@@ -14,3 +14,10 @@ exports.index = function(req, res){
     res.render('items/index', {items:items});
   });
 };
+
+exports.markonsale = function(req, res){
+  Item.markOnSale(req.params.itemId, function(){
+    res.redirect('/profile');
+  });
+};
+
