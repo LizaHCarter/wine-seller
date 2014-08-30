@@ -37,6 +37,7 @@ module.exports = function(app, express){
   app.post('/items', items.create);
   app.get('/marketplace', items.index);
   app.put('/items/:itemId', items.markonsale);
+  app.get('/trade/:itemId', items.showTrade);
 
   console.log('Express: Routes Loaded');
 };

@@ -69,5 +69,20 @@ describe('users', function(){
     });
   });
 
+  describe('get /trade/itemId', function(){
+    it('should display the trade confirmation page', function(done){
+      request(app)
+      .get('/trade/a00000000000000000000002')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Rose Wine');
+        expect(res.text).to.include('White Wine');
+        expect(res.text).to.include('Green Wine');
+        done();
+      });
+    });
+  });
+
 });
 

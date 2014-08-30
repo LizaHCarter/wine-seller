@@ -56,7 +56,7 @@ describe('Item', function(){
       var id = Mongo.ObjectID('000000000000000000000001');
       Item.findAllForUser(id, function(err, items){
         expect(items).to.have.length(2);
-        expect(items[1].numBids).to.equal(1);
+        expect(items[1].numBids).to.equal(2);
         done();
       });
     });
@@ -79,6 +79,19 @@ describe('Item', function(){
           expect(item.onSale).to.be.true;
           done();
         });
+      });
+    });
+  });
+
+  describe('.findForTrade', function(){
+    it('find an item up for trade & all bidded items for it', function(done){
+      var ownerId = Mongo.ObjectID('000000000000000000000001');
+      Item.findForTrade('a00000000000000000000002', ownerId, function(err, data){
+        expect(data.saleItem.name).to.equal('White Wine');
+        expect(data.bids).to.have.length(2);
+        expect(data.bids[0].item).to.be.ok;
+        expect(data.bids[0].itemOfferedId.toString()).to.equal(data.bids[0].item._id.toString());
+        done();
       });
     });
   });

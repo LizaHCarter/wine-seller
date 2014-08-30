@@ -1,0 +1,44 @@
+extends ../shared/template
+block content
+  h2 Confirm Trade
+  .panel.panel-default
+    .panel-body
+      .row
+        .col-xs-6
+          h5 Wine For Trade
+          table.table
+            tbody
+              tr
+                td Photo
+                td.item-photo(style='background-image:url(#{data.saleItem.photo})')
+              tr
+                td Name:
+                td= data.saleItem.name
+              tr
+                td Location
+                td= data.saleItem.location
+              tr
+                td Description
+                td= data.saleItem.description
+        .col-xs-6
+          h5 Bids
+          form(role='form', method='post', action='/trade')
+            input(type='hidden', name='_method', value='put')
+            table.table
+              thead
+                tr
+                  th Photo
+                  th Name
+                  th Description
+                  th Select
+              tbody
+                each bid in data.bids
+                  tr
+                    td.item-photo(style='background-image:url(#{bid.item.photo});')
+                    td= bid.item.name
+                    td= bid.item.description
+                    td: input(type='radio', name='winningBid', value='#{bid._id}')
+            button.btn.btn-primary(type='submit') Trade
+
+block scripts
+

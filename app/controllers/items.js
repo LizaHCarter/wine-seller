@@ -21,3 +21,12 @@ exports.markonsale = function(req, res){
   });
 };
 
+exports.showTrade = function(req, res){
+  Item.findForTrade(req.params.itemId, res.locals.user._id, function(err, data){
+    if(data){
+      res.render('items/show-trade', {data:data});
+    }else{
+      res.redirect('/marketplace');
+    }
+  });
+};
