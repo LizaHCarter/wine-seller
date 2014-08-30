@@ -1,27 +1,35 @@
 ## Wine Seller
 ### Code Badges
-build status icon
-coverage status icon
+[![Build Status](https://travis-ci.org/LizaHCarter/wine-seller.svg)](https://travis-ci.org/LizaHCarter/wine-seller)
+[![Coverage Status](https://coveralls.io/repos/LizaHCarter/wine-seller/badge.png)](https://coveralls.io/r/LizaHCarter/wine-seller)
 
 ### Description
 An app for sommeliers to trade vintage and rare wines.
 
 ### Models
 ```
-Model 1
+User
 ```
 
 ```
-Model 2
+Item
+```
+
+```
+Bid
 ```
 
 ### Database
 ```
-Collecion 1
+Users
 ```
 
 ```
-Collection 2
+Items
+```
+
+```
+Bids
 ```
 
 ### Features
@@ -37,7 +45,7 @@ $ npm test
 
 ### Contributors
 - [Liza Carter](https://github.com/lizahcarter)
-- [DS](https://github.com/dsroden)
+- [Daniel Roden](https://github.com/dsroden)
 - [Mark Supalla](https://github.com/marksupalla)
 - [Adam Barnhard](https://github.com/abarnhard)
 
