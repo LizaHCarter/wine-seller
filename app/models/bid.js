@@ -19,7 +19,7 @@ Object.defineProperty(Bid, 'collection', {
 Bid.create = function(data,itemOfferedId, cb){
   var offeredItemId = Mongo.ObjectID(itemOfferedId),
       i             = new Bid(data);
-  console.log('********BID', i);
+  // console.log('********BID', i);
   Bid.collection.save(i, function(){
     require('./item').collection.update({_id: offeredItemId},{$set: {isBiddable: false}}, function(err, obj){
       notifySeller(i, function(){
@@ -53,7 +53,7 @@ Bid.accept = function(bidId, userId, cb){
   // console.log('*********BID ID', bidId);
   // console.log('*********User ID', userId);
   Bid.collection.findAndModify({_id:bidId, upForBidOwnerId:userId}, [], {$set:{isOpen:false}}, function(err, winningBid){
-    console.log('*******WINNING BID', winningBid);
+    // console.log('*******WINNING BID', winningBid);
     if(!winningBid){return cb();}
     Bid.collection.find({itemUpForBidId:winningBid.itemUpForBidId, isOpen:true}).toArray(function(err, bids){
       if(bids.length){
@@ -83,12 +83,12 @@ function notifySeller(bid, cb){
       sendText(data.phone, message, function(err3, resT){
         // console.log('*************TEXT ERROR:', err3);
         // console.log('*************TEXT RES:', resT);
-        sendEmail('nodeapptest@gmail.com', data.email, message, function(err4, resE){
-          // console.log('*************EMAIL ERROR:', err4);
-          // console.log('*************EMAIL RES:', resE);
-          cb();
-        });
       });
+      sendEmail('nodeapptest@gmail.com', data.email, message, function(err4, resE){
+        // console.log('*************EMAIL ERROR:', err4);
+        // console.log('*************EMAIL RES:', resE);
+      });
+      cb();
     });
   });
 }
@@ -101,12 +101,12 @@ function notifyBuyer(bid, cb){
         sendText(data.phone, message, function(err4, resT){
           // console.log('*************TEXT ERROR:', err4);
           // console.log('*************TEXT RES:', resT);
-          sendEmail('nodeapptest@gmail.com', data.email, message, function(err5, resE){
-            // console.log('*************EMAIL ERROR:', err5);
-            // console.log('*************EMAIL RES:', resE);
-            cb();
-          });
         });
+        sendEmail('nodeapptest@gmail.com', data.email, message, function(err5, resE){
+          // console.log('*************EMAIL ERROR:', err5);
+          // console.log('*************EMAIL RES:', resE);
+        });
+        cb();
       });
     });
   });
