@@ -42,6 +42,7 @@ Item.findForSale = function(query, cb){
   var filter = {onSale:true},
       sort   = {};
   if(query.sort){sort[query.sort] = query.order * 1;}
+  if(query.tag){filter.tags = {$in:[query.tag]};}
   Item.collection.find(filter).sort(sort).toArray(function(err, items){
     if(items.length){
       async.map(items, getOwnerInfo, cb);
@@ -64,8 +65,9 @@ Item.findForTrade = function(itemId, ownerId, cb){
 };
 
 Item.markOnSale = function(itemId, cb){
-  var _id = Mongo.ObjectID(itemId);
-  Item.collection.update({_id:_id}, {$set: {onSale: true, isBiddable:false}}, cb);
+  var _id = Mongo.ObjectID(itemId),
+      timeStamp = new Date();
+  Item.collection.update({_id:_id}, {$set: {onSale: true, isBiddable:false, datePosted:timeStamp}}, cb);
 };
 
 Item.findTradeAndBiddableItems = function(itemId, userId, cb){
