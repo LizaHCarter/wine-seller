@@ -80,8 +80,14 @@ function notifySeller(bid, cb){
   require('./user').collection.findOne({_id:bid.upForBidOwnerId}, {fields:{name:1, email:1, phone:1}}, function(err, data){
     require('./item').collection.findOne({_id:bid.itemUpForBidId}, {fields:{name:1}}, function(err2, item){
       var message = 'Hey ' + data.name + '\nYou\'ve just recieved an offer for the ' + item.name + ' on Wine Seller';
-      sendText(data.phone, message, function(){
-        sendEmail('wine-seller@mailinator.com', data.email, message, cb);
+      sendText(data.phone, message, function(err3, resT){
+        // console.log('*************TEXT ERROR:', err3);
+        // console.log('*************TEXT RES:', resT);
+        sendEmail('nodeapptest@gmail.com', data.email, message, function(err4, resE){
+          // console.log('*************EMAIL ERROR:', err4);
+          // console.log('*************EMAIL RES:', resE);
+          cb();
+        });
       });
     });
   });
@@ -92,8 +98,14 @@ function notifyBuyer(bid, cb){
     require('./item').collection.findOne({_id:bid.itemOfferedId}, {fields:{name:1}}, function(err2, offerItem){
       require('./item').collection.findOne({_id:bid.itemUpForBidId}, {fields:{name:1}}, function(err3, saleItem){
         var message = 'Hey ' + data.name + '\nYour offer to trade' + offerItem.name + ' for '+saleItem.name+' on Wine Seller was accepted.\nCongrats on the booze.\nThe Wine Seller Team';
-        sendText(data.phone, message, function(){
-          sendEmail('wine-seller@mailinator.com', data.email, message, cb);
+        sendText(data.phone, message, function(err4, resT){
+          // console.log('*************TEXT ERROR:', err4);
+          // console.log('*************TEXT RES:', resT);
+          sendEmail('nodeapptest@gmail.com', data.email, message, function(err5, resE){
+            // console.log('*************EMAIL ERROR:', err5);
+            // console.log('*************EMAIL RES:', resE);
+            cb();
+          });
         });
       });
     });
@@ -112,7 +124,7 @@ function sendText(to, body, cb){
 }
 
 function sendEmail(sender, to, body, cb){
-  if(!sender.email || !to){return cb();}
+  if(!sender || !to){return cb();}
 
   var apiKey  = process.env.MGAPIKEY,
       domain  = process.env.MGDOMAIN,
