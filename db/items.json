@@ -35,9 +35,54 @@
   "description" : "Wine that is kinda red, kinda white",
   "tags" : ["rose", "wine"],
   "ownerId" : {"$oid":"000000000000000000000002"},
+  "isBiddable" : false,
+  "onSale" : false,
+  "photo" : "http://www.calliopewines.com/img/wines/2010-rose-bottle-large.jpg",
+  "datePosted" : {"$date":477295200000}
+}
+{
+  "_id" : {"$oid":"a00000000000000000000004"},
+  "name" : "Green Wine",
+  "location" : "Nashville, TN, USA",
+  "lat" : 36.166667,
+  "lng" : -85.78333299999997,
+  "description" : "Wine that is green",
+  "tags" : ["green", "wine"],
+  "ownerId" : {"$oid":"000000000000000000000002"},
+  "isBiddable" : false,
+  "onSale" : false,
+  "photo" : "http://www.calliopewines.com/img/wines/2010-rose-bottle-large.jpg",
+  "datePosted" : {"$date":477295200000}
+}
+{
+  "_id" : {"$oid":"a00000000000000000000005"},
+  "name" : "Blue Wine",
+  "location" : "Nashville, TN, USA",
+  "lat" : 36.166667,
+  "lng" : -85.78333299999997,
+  "description" : "Wine that is blue",
+  "tags" : ["blue", "wine"],
+  "ownerId" : {"$oid":"000000000000000000000002"},
   "isBiddable" : true,
   "onSale" : false,
   "photo" : "http://www.calliopewines.com/img/wines/2010-rose-bottle-large.jpg",
   "datePosted" : {"$date":477295200000}
 }
+{
+  "_id" : {"$oid":"a00000000000000000000006"},
+  "name" : "Orange Wine",
+  "location" : "Nashville, TN, USA",
+  "lat" : 36.166667,
+  "lng" : -85.78333299999997,
+  "description" : "Wine that is orange",
+  "tags" : ["blue", "wine"],
+  "ownerId" : {"$oid":"000000000000000000000002"},
+  "isBiddable" : false,
+  "onSale" : true,
+  "photo" : "http://www.calliopewines.com/img/wines/2010-rose-bottle-large.jpg",
+  "datePosted" : {"$date":477295200000}
+}
+
+
+
 

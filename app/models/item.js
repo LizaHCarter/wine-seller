@@ -13,7 +13,7 @@ function Item(o){
   this.tags = o.tags.split(',').map(function(s){return s.trim();});
   this.photo = o.photo;
   this.ownerId = o.ownerId;
-  this.isBiddable = false;
+  this.isBiddable = true;
   this.onSale = false;
   this.datePosted = new Date();
 }
@@ -48,6 +48,14 @@ Item.findForSale = function(query, cb){
 Item.markOnSale = function(itemId, cb){
   var _id = Mongo.ObjectID(itemId);
   Item.collection.update({_id:_id}, {$set: {onSale: true}}, cb);
+};
+
+Item.findTradeAndBiddableItems = function(itemId, userId, cb){
+  Item.findById(itemId, function(err, itemForTrade){
+    Item.collection.find({ownerId:userId, isBiddable: true}).toArray(function(err, bidItems){
+      cb(null, itemForTrade, bidItems);
+    });
+  });
 };
 
 module.exports = Item;
