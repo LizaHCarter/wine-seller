@@ -6,8 +6,11 @@ exports.authenticate = function(req, res, next){
   if(!req.session.userId){return next();}
 
   User.findById(req.session.userId, function(err, user){
-    res.locals.user = user;
-    next();
+    user.unread(function(err, count){
+      user.unread = count;
+      res.locals.user = user;
+      next();
+    });
   });
 };
 

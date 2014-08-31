@@ -2,6 +2,7 @@
 
 var bcrypt = require('bcrypt'),
     Mongo  = require('mongodb'),
+    Message = require('./message'),
     _      = require('underscore-contrib');
 
 function User(){
@@ -35,12 +36,17 @@ User.authenticate = function(o, cb){
   });
 };
 
+User.prototype.unread = function(cb){
+  Message.unread(this._id, cb);
+};
+
 User.prototype.save = function(o, cb){
   var properties = Object.keys(o),
       self       = this;
   properties.forEach(function(property){
     self[property] = o[property];
   });
+  delete this.unread;
   User.collection.save(self, cb);
 };
 
@@ -51,6 +57,16 @@ User.findAll = function(cb){
 User.findOne = function(filter, cb){
   User.collection.findOne(filter, cb);
 };
+
+User.prototype.messages = function(cb){
+  Message.messages(this._id, cb);
+};
+
+User.prototype.send = function(receiver, obj, cb){
+  Message.send(this._id, receiver._id, obj.message, cb);
+};
+
+
 
 module.exports = User;
 
