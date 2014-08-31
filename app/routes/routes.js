@@ -10,6 +10,7 @@ var morgan         = require('morgan'),
     debug          = require('../lib/debug'),
     home           = require('../controllers/home'),
     items          = require('../controllers/items'),
+    bids         = require('../controllers/bids'),
     users          = require('../controllers/users');
 
 module.exports = function(app, express){
@@ -42,6 +43,7 @@ module.exports = function(app, express){
   app.get('/trade/:itemId', items.showTrade);
   app.put('/trade', items.trade);
   app.get('/bid/:itemId', items.itemBidPage);
+  app.post('/bidding/:itemOfferedId', bids.create);
 
   console.log('Express: Routes Loaded');
 };

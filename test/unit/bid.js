@@ -9,7 +9,12 @@ var expect    = require('chai').expect,
     Mongo     = require('mongodb'),
     dbConnect = require('../../app/lib/mongodb'),
     cp        = require('child_process'),
-    db        = 'wine-seller-test';
+    db        = 'wine-seller-test',
+
+    itemUpForBidId = Mongo.ObjectID(),
+    itemOfferedId = Mongo.ObjectID(),
+    upForBidOwnerId = Mongo.ObjectID(),
+    offerOwnerId = Mongo.ObjectID();
 
 describe('Bid', function(){
   before(function(done){
@@ -21,6 +26,32 @@ describe('Bid', function(){
   beforeEach(function(done){
     cp.execFile(__dirname + '/../scripts/clean-db.sh', [db], {cwd:__dirname + '/../scripts'}, function(err, stdout, stderr){
       done();
+    });
+  });
+
+  describe('constructor', function(){
+    it('should create a new Bid object', function(){
+      var data = {itemUpForBidId: itemUpForBidId, itemOfferedId: itemOfferedId, upForBidOwnerId:upForBidOwnerId, offerOwnerId: offerOwnerId},
+          i    = new Bid(data);
+      expect(i).to.be.instanceof(Bid);
+      expect(i.itemUpForBidId).to.be.instanceof(Mongo.ObjectID);
+      expect(i.itemOfferedId).to.be.instanceof(Mongo.ObjectID);
+      expect(i.upForBidOwnerId).to.be.instanceof(Mongo.ObjectID);
+      expect(i.offerOwnerId).to.be.instanceof(Mongo.ObjectID);
+      expect(i.isOpen).to.be.true;
+    });
+  });
+
+  describe('.create', function(){
+    it('should save a new Bid in the database and change offered item isBiddable to false', function(done){
+      var data = {itemUpForBidId: itemUpForBidId, itemOfferedId: itemOfferedId, upForBidOwnerId:upForBidOwnerId, offerOwnerId: offerOwnerId},
+          i    = new Bid(data);
+      Bid.create(i, 'a00000000000000000000005', function(){
+        Item.findById('a00000000000000000000005', function(err, changedItem){
+          expect(changedItem.isBiddable).to.be.false;
+          done();
+        });
+      });
     });
   });
 

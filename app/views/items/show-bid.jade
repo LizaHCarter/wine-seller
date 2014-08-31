@@ -17,31 +17,20 @@ block content
               td= item.location
               td= item.description
     .row
-      .col-xs-6
-        table.table
-          thead My Wines
-            tr
-              th Photo
-              th Name
-              th Location
-              th Description
-              th Trade
-          tbody
-            each biddable in biddableItems
-              tr
-                td.biddable-photo(style='background-image:url(#{biddable.photo})')
-                td: a(href='/bid/#{item._id}')= biddable.name
-                td= biddable.location
-                td= biddable.description
-                td
-                  .radio
-                    label
-                      input(type='radio' name='bid' value='#{biddable._id}')
-    .row
-      .col-xs-6
-        form(role='form', method='post', action='/marketplace')
-          button.btn.btn-success(type='submit') MAKE BID
-
+      .col-xs-12
+        #bids
+          each bidItem in biddableItems
+            #bid
+              form(role='form', method='post', action='/bidding/#{bidItem._id}')
+                  .bid-photo(style='background-image:url("#{bidItem.photo}");')
+                  .bid-name= bidItem.name
+                  .bid-location= bidItem.location
+                  .bid-description= bidItem.description
+                    input(type='hidden', name='itemUpForBidId', value=item._id)
+                    input(type='hidden', name='itemOfferedId', value=bidItem._id)
+                    input(type='hidden', name='offerOwnerId', value=bidItem.ownerId)
+                    input(type='hidden', name='upForBidOwnerId', value=item.ownerId)
+                    button#bidButton.btn.btn-success(type='submit') Bid It
 block scripts
   script(src='/js/user/items-index.js')
 

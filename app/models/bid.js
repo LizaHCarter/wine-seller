@@ -3,12 +3,26 @@
 var Mongo  = require('mongodb'),
     async  = require('async');
 
-function Bid(){
+function Bid(o){
+  this.itemUpForBidId = Mongo.ObjectID(o.itemUpForBidId);
+  this.itemOfferedId = Mongo.ObjectID(o.itemOfferedId);
+  this.upForBidOwnerId = Mongo.ObjectID(o.upForBidOwnerId);
+  this.offerOwnerId = Mongo.ObjectID(o.offerOwnerId);
+  this.isOpen = true;
+  this.bidDate = new Date();
 }
 
 Object.defineProperty(Bid, 'collection', {
   get: function(){return global.mongodb.collection('bids');}
 });
+
+Bid.create = function(data,itemOfferedId, cb){
+  var offeredItemId = Mongo.ObjectID(itemOfferedId),
+      i = new Bid(data);
+  Bid.collection.save(i, function(){
+    require('./item').collection.update({_id: offeredItemId},{$set: {isBiddable: false}},cb);
+  });
+};
 
 Bid.countItemBids = function(itemId, cb){
   Bid.collection.count({itemUpForBidId:itemId, isOpen:true}, cb);
