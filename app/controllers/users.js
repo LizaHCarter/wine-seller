@@ -54,7 +54,6 @@ exports.edit = function(req, res){
 
 exports.update = function(req, res){
   res.locals.user.save(req.body, function(){
-    console.log(req.body);
     res.redirect('/profile');
   });
 };
@@ -66,9 +65,9 @@ exports.index = function(req, res){
 };
 
 exports.trader = function(req, res){
-  User.findOne({email:req.params.email}, function(err, trader){
+  User.findOneAndItems({email:req.params.email}, function(err, trader, biddableItems, saleItems){
     if(trader){
-      res.render('users/trader', {trader:trader});
+      res.render('users/trader', {trader:trader, biddableItems:biddableItems, saleItems:saleItems});
     }else{
       res.redirect('/users');
     }

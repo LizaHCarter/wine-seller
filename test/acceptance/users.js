@@ -137,6 +137,8 @@ describe('users', function(){
       .set('cookie', cookie)
       .end(function(err, res){
         expect(res.status).to.equal(200);
+        expect(res.text).to.include('Red Wine');
+        expect(res.text).to.include('White Wine');
         done();
       });
     });
