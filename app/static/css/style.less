@@ -1,5 +1,9 @@
+@bidCards: #120F30;
+@bidButton: #ebebeb;
 
-body{
+
+.homePage {
+  height: 1080px;
 }
 
 .profile-photo {
@@ -17,3 +21,58 @@ body{
 #marketplace-map {
   height: 400px;
 }
+
+#bid {
+  margin: 10px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border: 1px solid @bidButton;
+  width: 200px;
+  height: 375px;
+  background-color: @bidCards ;
+
+}
+
+.bid-photo{
+  height: 200px;
+  background-size: cover;
+  /*background-repeat: no-repeat;*/
+}
+
+.bid-name {
+  font-size: 24px;
+  padding: 10px;
+}
+
+.bid-location {
+  padding: 10px;
+  font-size: 18px;
+  background-color: #1B1742;
+}
+
+.bid-description {
+  padding: 10px;
+  font-size: 18px;
+  background-color: #231F4D;
+  margin: 0px;
+}
+
+#bidButton {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 197px;
+  background-color: @bidButton;
+  border: 0px solid @bidButton;
+  color: #260026;
+  border-radius: 0%;
+}
+
+#bidButton:hover {
+  background-color: white;
+}
+
+
+
+
