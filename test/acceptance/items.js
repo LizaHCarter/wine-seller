@@ -69,6 +69,35 @@ describe('users', function(){
     });
   });
 
+  describe('get /trade/itemId', function(){
+    it('should display the trade confirmation page', function(done){
+      request(app)
+      .get('/trade/a00000000000000000000002')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Rose Wine');
+        expect(res.text).to.include('White Wine');
+        expect(res.text).to.include('Green Wine');
+        done();
+      });
+    });
+  });
+
+  describe('put /trade', function(){
+    it('should redirect to the profile page after trading items', function(done){
+      request(app)
+      .post('/trade')
+      .send('_method=put&winningBid=b00000000000000000000001')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/profile');
+        done();
+      });
+    });
+  });
+
   describe('get /bid/:itemId', function(){
     it('should display the bid page for a specific item', function(done){
       request(app)

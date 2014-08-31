@@ -83,6 +83,19 @@ describe('Item', function(){
     });
   });
 
+  describe('.findForTrade', function(){
+    it('find an item up for trade & all bidded items for it', function(done){
+      var ownerId = Mongo.ObjectID('000000000000000000000001');
+      Item.findForTrade('a00000000000000000000002', ownerId, function(err, data){
+        expect(data.saleItem.name).to.equal('White Wine');
+        expect(data.bids).to.have.length(2);
+        expect(data.bids[0].item).to.be.ok;
+        expect(data.bids[0].itemOfferedId.toString()).to.equal(data.bids[0].item._id.toString());
+        done();
+      });
+    });
+  });
+
   describe('.findTradeAndBiddableItems', function(){
     it('should find an item up for trade and also all biddable items of current user', function(done){
       var userId = Mongo.ObjectID('000000000000000000000002');

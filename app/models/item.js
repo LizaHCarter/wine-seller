@@ -45,6 +45,18 @@ Item.findForSale = function(query, cb){
   Item.collection.find(filter).sort(sort).toArray(cb);
 };
 
+Item.findForTrade = function(itemId, ownerId, cb){
+  var id = Mongo.ObjectID(itemId);
+  Item.collection.findOne({_id:id, ownerId:ownerId}, function(err, saleItem){
+    if(!saleItem){return cb();}
+
+    Bid.getBids(saleItem._id, function(err2, bids){
+      var data = {saleItem:saleItem, bids:bids};
+      cb(err2, data);
+    });
+  });
+};
+
 Item.markOnSale = function(itemId, cb){
   var _id = Mongo.ObjectID(itemId);
   Item.collection.update({_id:_id}, {$set: {onSale: true}}, cb);
