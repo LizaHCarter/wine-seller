@@ -70,6 +70,11 @@ Item.findTradeAndBiddableItems = function(itemId, userId, cb){
   });
 };
 
+Item.remove = function(itemId, userId, cb){
+  itemId = Mongo.ObjectID(itemId);
+  Item.collection.remove({_id:itemId, ownerId:userId}, cb);
+};
+
 module.exports = Item;
 
 function getNumberOfBids(item, cb){

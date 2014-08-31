@@ -108,5 +108,18 @@ describe('Item', function(){
     });
   });
 
+  describe('.destroy', function(){
+    it('should remove an item from the collection', function(done){
+      var userId = Mongo.ObjectID('000000000000000000000001');
+      Item.remove('a00000000000000000000001', userId, function(){
+        Item.findById('a00000000000000000000001', function(err, item){
+          console.log(item);
+          expect(item).to.be.null;
+          done();
+        });
+      });
+    });
+  });
+
 });
 

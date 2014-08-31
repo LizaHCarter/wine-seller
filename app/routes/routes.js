@@ -47,6 +47,7 @@ module.exports = function(app, express){
   app.put('/trade', items.trade);
   app.get('/bid/:itemId', items.itemBidPage);
   app.post('/bidding/:itemOfferedId', bids.create);
+  app.delete('/delete/:itemId', items.destroy);
 
   console.log('Express: Routes Loaded');
 };
