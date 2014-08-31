@@ -1,7 +1,8 @@
 'use strict';
 
-var Item = require('../models/item'),
-    Bid  = require('../models/bid');
+var Item   = require('../models/item'),
+    Bid    = require('../models/bid'),
+    moment = require('moment');
 
 exports.create = function(req, res){
   req.body.ownerId = res.locals.user._id;
@@ -12,7 +13,7 @@ exports.create = function(req, res){
 
 exports.index = function(req, res){
   Item.findForSale(req.query, function(err, items){
-    res.render('items/index', {items:items});
+    res.render('items/index', {items:items, moment:moment});
   });
 };
 

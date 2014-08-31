@@ -13,15 +13,21 @@ block content
               tr
                 th Photo
                 th Name
-                th Location
                 th Description
+                th Date
+                th Location
+                th Tags
+                th Owner
             tbody
               each item in items
                 tr.item(data-loc='#{item.location}', data-lat='#{item.lat}', data-lng='#{item.lng}')
                   td.item-photo(style='background-image:url(#{item.photo})')
                   td: a(href='/bid/#{item._id}')= item.name
+                  td= item.description.substr(0, 25)
+                  td= moment(item.datePosted).format('MMM Do YY')
                   td= item.location
-                  td= item.description
+                  td= item.tags
+                  td: a(href='/users/#{item.owner.email}')= item.owner.name
 
 block scripts
   script(src='/js/user/items-index.js')

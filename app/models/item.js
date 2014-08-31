@@ -42,7 +42,13 @@ Item.findForSale = function(query, cb){
   var filter = {onSale:true},
       sort   = {};
   if(query.sort){sort[query.sort] = query.order * 1;}
-  Item.collection.find(filter).sort(sort).toArray(cb);
+  Item.collection.find(filter).sort(sort).toArray(function(err, items){
+    if(items.length){
+      async.map(items, getOwnerInfo, cb);
+    }else{
+      cb();
+    }
+  });
 };
 
 Item.findForTrade = function(itemId, ownerId, cb){
@@ -59,7 +65,7 @@ Item.findForTrade = function(itemId, ownerId, cb){
 
 Item.markOnSale = function(itemId, cb){
   var _id = Mongo.ObjectID(itemId);
-  Item.collection.update({_id:_id}, {$set: {onSale: true}}, cb);
+  Item.collection.update({_id:_id}, {$set: {onSale: true, isBiddable:false}}, cb);
 };
 
 Item.findTradeAndBiddableItems = function(itemId, userId, cb){
@@ -80,6 +86,13 @@ module.exports = Item;
 function getNumberOfBids(item, cb){
   Bid.countItemBids(item._id, function(err, count){
     item.numBids = count;
+    cb(null, item);
+  });
+}
+
+function getOwnerInfo(item, cb){
+  require('./user').collection.findOne({_id:item.ownerId}, {fields:{name:1, email:1}}, function(err, data){
+    item.owner = data;
     cb(null, item);
   });
 }
