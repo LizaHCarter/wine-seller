@@ -1,0 +1,47 @@
+extends ../shared/template
+block content
+  h2 Bid Page
+    .row
+      .col-xs-12
+        table.table.table-border
+          thead Item
+            tr
+              th Photo
+              th Name
+              th Location
+              th Description
+          tbody
+            tr
+              td.item-photo(style='background-image:url(#{item.photo})')
+              td: a(href='/bid/#{item._id}')= item.name
+              td= item.location
+              td= item.description
+    .row
+      .col-xs-6
+        table.table
+          thead My Wines
+            tr
+              th Photo
+              th Name
+              th Location
+              th Description
+              th Trade
+          tbody
+            each biddable in biddableItems
+              tr
+                td.biddable-photo(style='background-image:url(#{biddable.photo})')
+                td: a(href='/bid/#{item._id}')= biddable.name
+                td= biddable.location
+                td= biddable.description
+                td
+                  .radio
+                    label
+                      input(type='radio' name='bid' value='#{biddable._id}')
+    .row
+      .col-xs-6
+        form(role='form', method='post', action='/marketplace')
+          button.btn.btn-success(type='submit') MAKE BID
+
+block scripts
+  script(src='/js/user/items-index.js')
+
