@@ -111,5 +111,18 @@ describe('users', function(){
     });
   });
 
+  describe('remove /delete/:itemId', function(){
+    it('should delete an item from a user celler', function(done){
+      request(app)
+      .delete('/delete/a00000000000000000000001')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/profile');
+        done();
+      });
+    });
+  });
+
 });
 

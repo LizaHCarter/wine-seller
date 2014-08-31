@@ -44,3 +44,9 @@ exports.itemBidPage= function(req, res){
   });
 };
 
+exports.destroy = function(req, res){
+  Item.remove(req.params.itemId, res.locals.user._id, function(){
+    res.redirect('/profile');
+  });
+};
+
