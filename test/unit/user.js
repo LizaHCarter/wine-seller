@@ -43,6 +43,23 @@ describe('User', function(){
     });
   });
 
+  describe('.find', function(){
+    it('should find users', function(done){
+      User.findAll(function(err, users){
+        expect(users).to.have.length(2);
+        done();
+      });
+    });
+  });
+
+  describe('.findOne', function(){
+    it('should find a specific user', function(done){
+      User.findOne({email:'nodeapptest+bob@gmail.com'}, function(err, user){
+        expect(user.email).to.equal('nodeapptest+bob@gmail.com');
+        done();
+      });
+    });
+  });
 });
 
 

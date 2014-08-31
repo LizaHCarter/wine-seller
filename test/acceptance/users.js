@@ -116,7 +116,33 @@ describe('users', function(){
       });
     });
   });
+
+  describe('get /users', function(){
+    it('should show all winos', function(done){
+      request(app)
+      .get('/users')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('nodeapptest+bob@gmail.com');
+        done();
+      });
+    });
+  });
+
+  describe('get /users/nodeapptest+bob@gmail.com', function(){
+    it('should show a specific wino', function(done){
+      request(app)
+      .get('/users/nodeapptest+bob@gmail.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        done();
+      });
+    });
+  });
 });
+
 
 
 

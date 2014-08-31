@@ -1,0 +1,36 @@
+extends ../shared/template
+block content
+  .row
+    .col-xs-12
+      h2= user.name
+  .row
+    .col-xs-3
+      a.thumbnail(href='#')
+        img(src=user.photo)
+  .row
+    .col-xs-6
+      table.table.table-striped.table-hover.table-bordered
+        thead
+          tr
+            th Name
+            th Email
+            th Phone
+        body
+          tr
+            td= trader.name
+            td= trader.email
+            td= trader.phone
+    .col-xs-12
+      .panel.panel-default
+        .panel-body
+          form(role='form', method='post', action='/message/#{trader._id}')
+            .row
+              .col-xs-12
+                .form-group
+                  label(for='message') Message
+                  textarea.form-control#message(name='message', autofocus=true)
+                .form-group
+                  button.btn.btn-info.btn-sm(type='submit') Send Message
+    .col-xs-12
+
+block scripts
