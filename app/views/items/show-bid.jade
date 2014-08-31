@@ -16,6 +16,11 @@ block content
               td: a(href='/bid/#{item._id}')= item.name
               td= item.location
               td= item.description
+  if user._id.toString() === item.ownerId.toString()
+    .row
+      .col-xs-12
+        p This is your item.
+  else
     .row
       .col-xs-12
         #bids
@@ -31,6 +36,8 @@ block content
                     input(type='hidden', name='offerOwnerId', value=bidItem.ownerId)
                     input(type='hidden', name='upForBidOwnerId', value=item.ownerId)
                     button#bidButton.btn.btn-success(type='submit') Bid It
+
+
 block scripts
   script(src='/js/user/items-index.js')
 
