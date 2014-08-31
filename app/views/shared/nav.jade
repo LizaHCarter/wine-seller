@@ -12,12 +12,11 @@
       ul.nav.navbar-nav.navbar-right
         if user
           li: a(href='/marketplace') Marketplace
-          li
-            a(href='/messages')
-              span Messages &nbsp;
-              span.badge 0
           li: a(href='/profile') Profile
           li: a(href='/users') Traders
+          li: a(href='/messages')
+            span Messages &nbsp;
+            span.badge= user.unread
           li
             form.navbar-form(method='post', action='/logout')
               .form-group

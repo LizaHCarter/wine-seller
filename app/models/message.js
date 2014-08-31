@@ -1,36 +1,47 @@
 'use strict';
 
-var bcrypt = require('bcrypt'),
+var async = require('async'),
     Mongo  = require('mongodb');
 
-function User(){
+function Message(senderId, receiverId, message){
+  this.senderId   = senderId;
+  this.receiverId = receiverId;
+  this.message    = message;
+  this.date       = new Date();
+  this.isRead     = false;
 }
 
-Object.defineProperty(User, 'collection', {
-  get: function(){return global.mongodb.collection('users');}
+Object.defineProperty(Message, 'collection', {
+  get: function(){return global.mongodb.collection('messages');}
 });
 
-User.findById = function(id, cb){
+Message.read = function(id, cb){
   var _id = Mongo.ObjectID(id);
-  User.collection.findOne({_id:_id}, cb);
-};
-
-User.register = function(o, cb){
-  User.collection.findOne({email:o.email}, function(err, user){
-    if(user){return cb();}
-    o.password = bcrypt.hashSync(o.password, 10);
-    User.collection.save(o, cb);
+  Message.collection.findAndModify({_id:_id}, [], {$set:{isRead:true}}, function(err, msg){
+    iterator(msg, cb);
   });
 };
 
-User.authenticate = function(o, cb){
-  User.collection.findOne({email:o.email}, function(err, user){
-    if(!user){return cb();}
-    var isOk = bcrypt.compareSync(o.password, user.password);
-    if(!isOk){return cb();}
-    cb(user);
+Message.send = function(senderId, receiverId, message, cb){
+  var m = new Message(senderId, receiverId, message);
+  Message.collection.save(m, cb);
+};
+
+Message.unread = function(receiverId, cb){
+  Message.collection.find({receiverId:receiverId, isRead:false}).count(cb);
+};
+
+Message.messages = function(receiverId, cb){
+  Message.collection.find({receiverId:receiverId}).sort({date:-1}).toArray(function(err, msgs){
+    async.map(msgs, iterator, cb);
   });
 };
 
-module.exports = User;
+module.exports = Message;
 
+function iterator(msg, cb){
+  require('./user').findById(msg.senderId, function(err, sender){
+    msg.sender = sender;
+    cb(null, msg);
+  });
+}

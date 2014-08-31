@@ -37,6 +37,9 @@ module.exports = function(app, express){
   app.get('/profile', users.profile);
   app.get('/users', users.index);
   app.get('/users/:email', users.trader);
+  app.post('/messages/:userId', users.send);
+  app.get('/messages/:msgId', users.message);
+  app.get('/messages', users.messages);
   app.post('/items', items.create);
   app.get('/marketplace', items.index);
   app.put('/items/:itemId', items.markOnSale);
