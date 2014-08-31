@@ -1,0 +1,19 @@
+extends ../shared/template
+block content
+  .ro
+    .col-xs-12
+      table.table.table-hover.table-striped.table-bordered
+        thead
+          tr
+            th From
+            th Date
+            th Message
+        tbody
+          each msg in msgs
+            tr(style='background-color:#{msg.isRead ? "#ECECEC" : "#8C8A8D"}')
+              td: a(href='/users/#{msg.sender.email}')= msg.sender.name
+              td= msg.date.toDateString()
+              td: a(href='/messages/#{msg._id}')= (msg.message.slice(0, 20) + ' .....')
+    .col-xs-6
+
+block scripts
