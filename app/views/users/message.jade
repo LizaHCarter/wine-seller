@@ -1,0 +1,9 @@
+extends ../shared/template
+block content
+  h2 Message from:
+    h3= msg.sender.name
+      h4
+        p Date : #{msg.date.toDateString()}
+        p Body : #{msg.message}
+
+block scripts
