@@ -1,9 +1,22 @@
 extends ../shared/template
 block content
-  h2 Message from:
-    h3= msg.sender.name
-      h4
-        p Date : #{msg.date.toDateString()}
-        p Body : #{msg.message}
+  .row 
+    .col-xs-1
+    .col-xs-8
+      h3 Message from #{msg.sender.name}
+      .panel.panel-default
+        .panel-body
+          p Date : #{msg.date.toDateString()}
+          h4 #{msg.message}
+    .col-xs-2
+      a.thumbnail(href='#')
+        img(src=msg.sender.photo)
+    .col-xs-1
+  .row
+    .col-xs-1
+
+    .col-xs-3
+      button.btn.btn-primary: a(href='/users/#{msg.sender.email}') Reply to #{msg.sender.name}
+
 
 block scripts

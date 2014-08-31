@@ -39,7 +39,17 @@ describe('users', function(){
         done();
       });
     });
+    it('should redirect to home if user owns item', function(done){
+      request(app)
+      .post('/bidding/a00000000000000000000001')
+      .set('cookie', cookie)
+      .send('itemUpForBidId=a00000000000000000000002&itemOfferedId=a00000000000000000000001&offerOwnerId=000000000000000000000001&upForBidOwnerId=000000000000000000000001')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/');
+        done();
+      });
+    });
   });
-
 });
 
