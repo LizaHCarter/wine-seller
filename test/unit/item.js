@@ -65,7 +65,7 @@ describe('Item', function(){
   describe('.findForSale', function(){
     it('should find items in database that are for sale based on query parameters', function(done){
       Item.findForSale({}, function(err, items){
-        expect(items).to.have.length(1);
+        expect(items).to.have.length(2);
         expect(items[0].name).to.equal('White Wine');
         done();
       });
@@ -91,6 +91,18 @@ describe('Item', function(){
         expect(data.bids).to.have.length(2);
         expect(data.bids[0].item).to.be.ok;
         expect(data.bids[0].itemOfferedId.toString()).to.equal(data.bids[0].item._id.toString());
+        done();
+      });
+    });
+  });
+
+  describe('.findTradeAndBiddableItems', function(){
+    it('should find an item up for trade and also all biddable items of current user', function(done){
+      var userId = Mongo.ObjectID('000000000000000000000002');
+      Item.findTradeAndBiddableItems('a00000000000000000000002',userId, function(err, item, biddableItems){
+        expect(item.onSale).to.be.true;
+        expect(item.name).to.equal('White Wine');
+        expect(biddableItems).to.have.length(1);
         done();
       });
     });

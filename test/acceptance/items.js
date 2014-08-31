@@ -98,5 +98,18 @@ describe('users', function(){
     });
   });
 
+  describe('get /bid/:itemId', function(){
+    it('should display the bid page for a specific item', function(done){
+      request(app)
+      .get('/bid/a00000000000000000000006')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Orange Wine');
+        done();
+      });
+    });
+  });
+
 });
 

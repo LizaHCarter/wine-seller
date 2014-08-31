@@ -16,7 +16,7 @@ exports.index = function(req, res){
   });
 };
 
-exports.markonsale = function(req, res){
+exports.markOnSale = function(req, res){
   Item.markOnSale(req.params.itemId, function(){
     res.redirect('/profile');
   });
@@ -37,3 +37,10 @@ exports.trade = function(req, res){
     res.redirect('/profile');
   });
 };
+
+exports.itemBidPage= function(req, res){
+  Item.findTradeAndBiddableItems(req.params.itemId, res.locals.user._id, function(err,item, biddableItems){
+    res.render('items/show-bid', {item:item, biddableItems:biddableItems});
+  });
+};
+
