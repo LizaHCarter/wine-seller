@@ -23,11 +23,15 @@ block content
     .col-xs-12
       .panel.panel-default
         .panel-body
-          form(role='form', method='post', action='/message/#{trader._id}')
+          form(role='form', method='post', action='/messages/#{trader._id}')
             .row
               .col-xs-12
+                .radio
+                  label
+                    input(type='radio' name='mtype' value='internal')
+                    span Send Internal Message
                 .form-group
-                  label(for='message') Message
+                  label(for='message') Message:
                   textarea.form-control#message(name='message', autofocus=true)
                 .form-group
                   button.btn.btn-info.btn-sm(type='submit') Send Message

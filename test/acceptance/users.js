@@ -141,8 +141,20 @@ describe('users', function(){
       });
     });
   });
+
+
+  describe('post /messages/3', function(){
+    it('should send a user a message', function(done){
+      request(app)
+      .post('/messages/000000000000000000000001')
+      .set('cookie', cookie)
+      .send('mtype=internal&message=hi')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users/nodeapptest+bob@gmail.com');
+        done();
+      });
+    });
+  });
 });
-
-
-
 
