@@ -4,11 +4,12 @@ var Mongo  = require('mongodb'),
     async  = require('async');
 
 function Bid(o){
-  this.itemUpForBidId = o.itemUpForBidId;
-  this.itemOfferedId = o.itemOfferedId;
-  this.upForBidOwnerId = o.upForBidOwnerId;
-  this.offerOwnerId = o.offerOwnerId;
+  this.itemUpForBidId = Mongo.ObjectID(o.itemUpForBidId);
+  this.itemOfferedId = Mongo.ObjectID(o.itemOfferedId);
+  this.upForBidOwnerId = Mongo.ObjectID(o.upForBidOwnerId);
+  this.offerOwnerId = Mongo.ObjectID(o.offerOwnerId);
   this.isOpen = true;
+  this.bidDate = new Date();
 }
 
 Object.defineProperty(Bid, 'collection', {
