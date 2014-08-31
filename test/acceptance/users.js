@@ -142,7 +142,6 @@ describe('users', function(){
     });
   });
 
-
   describe('post /messages/3', function(){
     it('should send a user a message', function(done){
       request(app)
@@ -156,5 +155,6 @@ describe('users', function(){
       });
     });
   });
+
 });
 
