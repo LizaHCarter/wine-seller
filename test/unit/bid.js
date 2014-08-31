@@ -11,10 +11,10 @@ var expect    = require('chai').expect,
     cp        = require('child_process'),
     db        = 'wine-seller-test',
 
-    itemUpForBidId = Mongo.ObjectID(),
-    itemOfferedId = Mongo.ObjectID(),
-    upForBidOwnerId = Mongo.ObjectID(),
-    offerOwnerId = Mongo.ObjectID();
+    itemUpForBidId = Mongo.ObjectID('a00000000000000000000002'),
+    itemOfferedId = Mongo.ObjectID('a00000000000000000000005'),
+    upForBidOwnerId = Mongo.ObjectID('000000000000000000000001'),
+    offerOwnerId = Mongo.ObjectID('000000000000000000000002');
 
 describe('Bid', function(){
   before(function(done){
