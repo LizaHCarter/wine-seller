@@ -84,5 +84,19 @@ describe('users', function(){
     });
   });
 
+  describe('put /trade', function(){
+    it('should redirect to the profile page after trading items', function(done){
+      request(app)
+      .post('/trade')
+      .send('_method=put&winningBid=b00000000000000000000001')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/profile');
+        done();
+      });
+    });
+  });
+
 });
 

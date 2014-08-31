@@ -40,6 +40,7 @@ module.exports = function(app, express){
   app.get('/marketplace', items.index);
   app.put('/items/:itemId', items.markonsale);
   app.get('/trade/:itemId', items.showTrade);
+  app.put('/trade', items.trade);
 
   console.log('Express: Routes Loaded');
 };

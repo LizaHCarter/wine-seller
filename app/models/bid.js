@@ -29,6 +29,22 @@ Bid.getBids = function(itemUpForBidId, cb){
   });
 };
 
+Bid.accept = function(bidId, userId, cb){
+  bidId = Mongo.ObjectID(bidId);
+  Bid.collection.findAndModify({_id:bidId, upForBidOwnerId:userId}, [], {$set:{isOpen:false}}, function(err, winningBid){
+    if(!winningBid){return cb();}
+    Bid.collection.find({itemUpForBidId:winningBid.itemUpForBidId, isOpen:true}).toArray(function(err, bids){
+      if(bids.length){
+        async.each(bids, closeAndReleaseLosers, function(err){
+          swapOwnership(winningBid, cb);
+        });
+      }else{
+        swapOwnership(winningBid, cb);
+      }
+    });
+  });
+};
+
 module.exports = Bid;
 
 // Helper Functions
@@ -38,3 +54,20 @@ function attachItem(bid, cb){
     cb(null, bid);
   });
 }
+
+function closeAndReleaseLosers(bid, cb){
+  Bid.collection.update({_id:bid._id}, {$set:{isOpen:false}}, function(){
+    require('./item').collection.update({_id:bid.itemOfferedId}, {$set:{isBiddable:true}}, function(err2, numUpdates){
+      cb(err2);
+    });
+  });
+}
+
+function swapOwnership(bid, cb){
+  require('./item').collection.update({_id:bid.itemUpForBidId}, {$set:{ownerId:bid.offerOwnerId}}, function(){
+    require('./item').collection.update({_id:bid.itemOfferedId}, {$set:{ownerId:bid.upForBidOwnerId}}, function(){
+      cb();
+    });
+  });
+}
+
