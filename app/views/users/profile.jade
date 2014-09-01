@@ -9,7 +9,7 @@ block content
             thead
               th
               th
-            tbody
+            tbody#profileTable
               td
                 .col-xs-6.col-md-2
                   .profile-photo(style='background-image:url(#{user.photo});')
@@ -18,12 +18,12 @@ block content
                   .profile-email= user.email
                   .profile-phone= user.phone
                   .profile-bio= user.bio
-                  h4.profile-favorite Favorite wine
+                  .profile-favorite Favorite wine
                     h5= user.favorite
                   h5: a(href='/profile/edit') Update Profile
 
         .col-xs-12.col-md-8
-          h5 Open Auctions
+          h4 Open Auctions
           table.table.table-bordered
             thead
               tr
@@ -37,31 +37,31 @@ block content
                     td.item-photo(style='background-image:url(#{item.photo});')
                     td: a(href='/trade/#{item._id}')= item.name
                     td= item.numBids
-    .panel-body
+    .panel-body#addWine
       .row
         .col-xs-4
-          h5#addWineBox Add a Wine
-            form#newItem(role='form', method='post', action='/items')
-              .form-group
-                label Name
-                input.form-control(name='name', type='text', placeholder='Red Wine')
-              .form-group
-                label Photo
-                input.form-control(name='photo', type='text', placeholder='http://example.com/pic.jpg')
-              .form-group
-                label Tags
-                input.form-control(name='tags', type='text', placeholder='red wine, 1998, Nappa Valley')
-              .form-group
-                label Location
-                input.form-control(name='location', type='text', placeholder='Nashville, TN')
-              .form-group
-                label Description
+          h4#addWineBox Add a Wine
+          form#newItem(role='form', method='post', action='/items')
+            .form-group
+              label Name
+              input.form-control(name='name', type='text', placeholder='Red Wine')
+            .form-group
+              label Photo
+              input.form-control(name='photo', type='text', placeholder='http://example.com/pic.jpg')
+            .form-group
+              label Tags
+              input.form-control(name='tags', type='text', placeholder='red wine, 1998, Nappa Valley')
+            .form-group
+              label Location
+              input.form-control(name='location', type='text', placeholder='Nashville, TN')
+            .form-group
+              label Description
                 textarea.form-control(name='description')
               button#submitItem.btn.btn-default(type='submit') Add Vintage
 
         .col-xs-12.col-md-8
-          h5 Wines on Bid
-          table.table.table-bordered
+          h4 Wines on Bid
+          table.table.table-bordered#winesOnBid
             thead
               tr
                 th Photo
@@ -75,7 +75,7 @@ block content
                       td= item.name
 
         .col-xs-12.col-md-8
-          h5 Celler
+          h4 Cellar
           table.table.table-bordered
             thead
               tr
