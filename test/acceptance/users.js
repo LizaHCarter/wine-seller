@@ -50,6 +50,16 @@ describe('users', function(){
         done();
       });
     });
+    it('should redirect to the register page(duplicate email in system)', function(done){
+      request(app)
+      .post('/register')
+      .send('name=John+Jones&photo=http%3A%2F%2Fdabfam.com%2Fbasics%2Fwp-content%2Fuploads%2F2012%2F05%2Fjohn-jones-pic.jpg&email=nodeapptest%2bbob%40gmail.com&phone=316-650-0346&password=1234')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/register');
+        done();
+      });
+    });
   });
 
   describe('get /login', function(){
@@ -77,6 +87,20 @@ describe('users', function(){
     });
   });
 
+  describe('delete /logout', function(){
+    it('should redirect to the home page', function(done){
+      request(app)
+      .post('/logout')
+      .set('cookie', cookie)
+      .send('_method=delete')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/');
+        done();
+      });
+    });
+  });
+
   describe('get /profile', function(){
     it('should show the users profile page', function(done){
       request(app)
@@ -85,6 +109,15 @@ describe('users', function(){
       .end(function(err, res){
         expect(res.status).to.equal(200);
         expect(res.text).to.include('Boberson');
+        done();
+      });
+    });
+    it('should bounce unauthenticated user to login page', function(done){
+      request(app)
+      .get('/profile')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/login');
         done();
       });
     });
@@ -137,6 +170,29 @@ describe('users', function(){
       .set('cookie', cookie)
       .end(function(err, res){
         expect(res.status).to.equal(200);
+        done();
+      });
+    });
+    it('should redirect to users (invalid email)', function(done){
+      request(app)
+      .get('/users/nodeapptest+idontexistatall@gmail.com')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/users');
+        done();
+      });
+    });
+  });
+
+  describe('get /messages', function(){
+    it('should return the messages page', function(done){
+      request(app)
+      .get('/messages')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Message');
         done();
       });
     });
