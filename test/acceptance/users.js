@@ -85,6 +85,16 @@ describe('users', function(){
         done();
       });
     });
+    it('should redirect to login page (incorrect credentials)', function(done){
+      request(app)
+      .post('/login')
+      .send('email=nodeapptest%2Bbob%40gmail.com&password=12354')
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/login');
+        done();
+      });
+    });
   });
 
   describe('delete /logout', function(){
@@ -209,6 +219,19 @@ describe('users', function(){
       .end(function(err, res){
         expect(res.status).to.equal(302);
         expect(res.headers.location).to.equal('/users/nodeapptest+bob@gmail.com');
+        done();
+      });
+    });
+  });
+
+  describe('get /messages/messageId', function(){
+    it('should return a message for the user', function(done){
+      request(app)
+      .get('/messages/c00000000000000000000001')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(200);
+        expect(res.text).to.include('Hey Bob,');
         done();
       });
     });

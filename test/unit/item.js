@@ -71,6 +71,14 @@ describe('Item', function(){
         done();
       });
     });
+    it('should return an empty array (no items are for sale in database)', function(done){
+      Item.collection.remove(function(){
+        Item.findForSale({}, function(err, items){
+          expect(items).to.have.length(0);
+          done();
+        });
+      });
+    });
   });
 
   describe('.markForSale', function(){

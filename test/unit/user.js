@@ -52,6 +52,15 @@ describe('User', function(){
     });
   });
 
+  describe('.findByEmail', function(){
+    it('should find a specific user', function(done){
+      User.findByEmail('nodeapptest+bob@gmail.com', function(err, user){
+        expect(user.email).to.equal('nodeapptest+bob@gmail.com');
+        done();
+      });
+    });
+  });
+
   describe('.findOneAndItems', function(){
     it('should find a specific user', function(done){
       User.findOneAndItems('nodeapptest+bob@gmail.com', function(err, trader, biddableItems, saleItems){
