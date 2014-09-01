@@ -24,11 +24,6 @@
   border: 3px solid @themeBlue;
 }
 
-
-.homePage {
-  height: 1080px;
-}
-
 .profile-photo {
   height: 200px;
   width: 150px;
@@ -60,7 +55,7 @@
 .bid-photo{
   height: 200px;
   background-size: cover;
-  /*background-repeat: no-repeat;*/
+  background-repeat: no-repeat;
 }
 
 .bid-name {
@@ -96,9 +91,115 @@
   background-color: white;
 }
 
+// views/user/edit
+#editProfile {
+  background-color:@themeBlue;
+}
+
+.input-bar{
+  margin: 0px;
+  background-color: @themeRed;
+  padding: 40px;
+  color: @themeBlue;
+  font-size: 20px;
+  border: 0px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.input-bar:hover {
+  background-color: white;
+}
+
+#labels {
+  background-color: white;
+  width: 2000px;
+  margin: 0px;
+}
+
+// /user/new.jade
+
+#register {
+  text-align: center;
+}
+
+.btn {
+  background-color: @themeBlue;
+  color: white;
+}
+
+.btn:hover {
+  background-color: @themeRed;
+  color: white;
+}
+
+@media screen and (max-width: 480px) {
+
+  .register {
+    text-align: center;
+    color: @themeBlue;
+    position: relative;
+  }
+  .content-main {
+    position: relative;
+    left: 0%;
+    border: 1px solid @themeBlue;
+  }
+}
+
+@media screen and (min-width: 660px) {
+
+  .register {
+    text-align: center;
+    color: @themeBlue;
+    position: relative;
+  }
+  .content-main {
+    position: relative;
+    left: 38%;
+  }
+  form.regLog {
+    padding: 15px;
+    border: 1px solid @themeBlue;
+    width: 400px;
+    border-radius: 15px;
+    margin-top: 20px;
+  }
+ .backgroundImage {
+   background-image: url("/img/wine_cellar_bg.png");
+   background-size: cover;
+   background-repeat: no-repeat;
+
+ }
+}
+
+// home/index.jade
+
+.navbar {
+  margin: 0px;
+}
+
+.homePage {
+   background-image: url("/img/wine_cellar_home.png");
+   background-size: cover;
+   height: 1080px;
+}
+
+
+
+
+
+
+
+
+
+
+//
 table#ItemsOnSale.table.table-stribed.table-hover.table-bordered {
   border: 3px solid #0f1c3c;
 }
+
+
 
 
 
