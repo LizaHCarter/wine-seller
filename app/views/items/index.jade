@@ -20,7 +20,7 @@ block content
                 th Owner
             tbody
               each item in items
-                tr.item(data-loc='#{item.location}', data-lat='#{item.lat}', data-lng='#{item.lng}')
+                tr.item(data-loc='#{item.location}', data-lat='#{item.lat}', data-lng='#{item.lng}', data-marker='#{item.mapMarker}')
                   td.item-photo(style='background-image:url(#{item.photo})')
                   td: a(href='/bid/#{item._id}')= item.name
                   td= item.description.substr(0, 25)

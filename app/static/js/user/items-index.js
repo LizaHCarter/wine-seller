@@ -13,7 +13,11 @@
     if(rows.length){
       rows.forEach(function(row){
         // console.log(row);
-        addMarker(map, parseFloat($(row).attr('data-lat')), parseFloat($(row).attr('data-lng')), $(row).attr('data-loc'), '/img/marker.png');
+        var lat = parseFloat($(row).attr('data-lat')),
+            lng = parseFloat($(row).attr('data-lng')),
+            name = $(row).attr('data-loc'),
+            marker = $(row).attr('data-marker') || '/img/marker.png';
+        addMarker(map, lat, lng, name, marker);
       });
     }
   });
