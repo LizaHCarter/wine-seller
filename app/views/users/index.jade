@@ -1,6 +1,7 @@
 extends ../shared/template
 block content
-  table.table.table-striped.table-hover
+  h3 Traders
+  table.table.table-bordered.table-hover#userTable
     thead
       tr
         th Name
@@ -11,7 +12,7 @@ block content
       each user in users
         tr
           td: a(href='/users/#{user.email}')=user.name
-          td(style='background-image:url(#{user.photo})')
+          td: .userPhoto(style='background-image:url(#{user.photo})')
           td= user.email
           td= user.phone
 

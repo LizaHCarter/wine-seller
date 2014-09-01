@@ -24,7 +24,7 @@ block content
                   td.item-photo(style='background-image:url(#{item.photo})')
                   td: a(href='/bid/#{item._id}')= item.name
                   td= item.description.substr(0, 25)
-                  td= moment(item.datePosted).format('MMM Do YY')
+                  td= moment(item.datePosted).format('MMM D, YYYY')
                   td= item.location
                   td!= helper.tags(query, item.tags)
                   td: a(href='/users/#{item.owner.email}')= item.owner.name
