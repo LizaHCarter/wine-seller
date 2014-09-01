@@ -48,13 +48,14 @@ exports.profile = function(req, res){
     res.render('users/profile', {items:items});
   });
 };
+
 exports.edit = function(req, res){
   res.render('users/edit');
 };
 
 exports.update = function(req, res){
   res.locals.user.save(req.body, function(){
-    console.log(req.body);
+    console.log('*******exports.update', req.body);
     res.redirect('/profile');
   });
 };
@@ -66,9 +67,9 @@ exports.index = function(req, res){
 };
 
 exports.trader = function(req, res){
-  User.findOne({email:req.params.email}, function(err, trader){
+  User.findOneAndItems(req.params.email, function(err, trader, biddableItems, saleItems){
     if(trader){
-      res.render('users/trader', {trader:trader});
+      res.render('users/trader', {trader:trader, saleItems:saleItems, biddableItems:biddableItems});
     }else{
       res.redirect('/users');
     }
