@@ -10,6 +10,7 @@
   "isBiddable" : true,
   "onSale" : false,
   "photo" : "http://upload.wikimedia.org/wikipedia/commons/c/cc/French_beaujolais_red_wine_bottle.jpg",
+  "mapMarker" : "/img/map_markers/red.png",
   "datePosted" : {"$date":477295200000}
 }
 {
@@ -24,6 +25,7 @@
   "isBiddable" : false,
   "onSale" : true,
   "photo" : "http://castelliestate.com.au/files/Checkmate_2012_SBS.jpg",
+  "mapMarker" : "/img/map_markers/white.png",
   "datePosted" : {"$date":479295200000}
 }
 {
@@ -38,6 +40,7 @@
   "isBiddable" : false,
   "onSale" : false,
   "photo" : "http://www.calliopewines.com/img/wines/2010-rose-bottle-large.jpg",
+  "mapMarker" : "/img/map_markers/default.png",
   "datePosted" : {"$date":477295200000}
 }
 {
@@ -52,6 +55,7 @@
   "isBiddable" : false,
   "onSale" : false,
   "photo" : "http://www.calliopewines.com/img/wines/2010-rose-bottle-large.jpg",
+  "mapMarker" : "/img/map_markers/default.png",
   "datePosted" : {"$date":477295200000}
 }
 {
@@ -66,6 +70,7 @@
   "isBiddable" : true,
   "onSale" : false,
   "photo" : "http://www.calliopewines.com/img/wines/2010-rose-bottle-large.jpg",
+  "mapMarker" : "/img/map_markers/default.png",
   "datePosted" : {"$date":477295200000}
 }
 {
@@ -80,6 +85,7 @@
   "isBiddable" : false,
   "onSale" : true,
   "photo" : "http://www.calliopewines.com/img/wines/2010-rose-bottle-large.jpg",
+  "mapMarker" : "/img/map_markers/default.png",
   "datePosted" : {"$date":477295200000}
 }
 

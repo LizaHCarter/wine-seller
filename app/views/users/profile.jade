@@ -55,6 +55,12 @@ block content
                 label Location
                 input.form-control(name='location', type='text', placeholder='Nashville, TN')
               .form-group
+                label Category
+                select.form-control(name='mapMarker')
+                  option(value='/img/map_markers/default.png') Misc.
+                  option(value='/img/map_markers/red.png') Red
+                  option(value='/img/map_markers/white.png') White
+              .form-group
                 label Description
                 textarea.form-control(name='description')
               button#submitItem.btn.btn-default(type='submit') Add Vintage

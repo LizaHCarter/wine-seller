@@ -26,7 +26,7 @@ describe('Item', function(){
   describe('constructor', function(){
     it('should create a new Item object', function(){
       var id   = Mongo.ObjectID(),
-          data = {name:'Test', location:'Testville', lat:'0', lng:'0', description:'Is A Test', tags:'tag1, tag2', photo:'url', ownerId:id},
+          data = {name:'Test', location:'Testville', lat:'0', lng:'0', description:'Is A Test', tags:'tag1, tag2', photo:'url', mapMarker:'/img/map_markers/default.png', ownerId:id},
           i    = new Item(data);
       expect(i).to.be.instanceof(Item);
       expect(i.name).to.equal('Test');
@@ -36,6 +36,7 @@ describe('Item', function(){
       expect(i.description).to.equal('Is A Test');
       expect(i.tags[1]).to.equal('tag2');
       expect(i.photo).to.equal('url');
+      expect(i.mapMarker).to.equal('/img/map_markers/default.png');
       expect(i.ownerId).to.be.instanceof(Mongo.ObjectID);
     });
   });
