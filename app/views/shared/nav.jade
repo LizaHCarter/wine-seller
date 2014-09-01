@@ -1,3 +1,4 @@
+
 .navbar.navbar-default(role='navigation')
   .container-fluid
     .navbar-header
@@ -6,7 +7,7 @@
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href='/') Wine Seller
+      a.navbar-brand(href='/')#brand Wine Seller
 
     .collapse.navbar-collapse#bs-navbar-collapse
       ul.nav.navbar-nav.navbar-right
@@ -21,7 +22,7 @@
             form.navbar-form(method='post', action='/logout')
               .form-group
                 input(type='hidden', name='_method', value='delete')
-                button.btn.btn-danger= user.email
+                button.btn.btn-danger Log Out
         else
           li: a(href='/register') Register
           li: a(href='/login') Login

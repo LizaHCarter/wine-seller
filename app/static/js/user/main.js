@@ -15,7 +15,7 @@ function geocode(address, cb){
 
 function cartographer(cssId, lat, lng, zoom){
   'use strict';
-  var mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP},
+  var mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP, styles: [{'stylers':[{'visibility':'off'}]},{'featureType':'water','stylers':[{'visibility':'on'},{'color':'#2f343b'}]},{'featureType':'landscape','stylers':[{'visibility':'on'},{'color':'#703030'}]},{'featureType':'administrative','elementType':'geometry.stroke','stylers':[{'visibility':'on'},{'color':'#2f343b'},{'weight':1}]}]},
       map = new google.maps.Map(document.getElementById(cssId), mapOptions);
 
   return map;
