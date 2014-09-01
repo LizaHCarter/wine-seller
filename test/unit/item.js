@@ -67,6 +67,7 @@ describe('Item', function(){
       Item.findForSale({}, function(err, items){
         expect(items).to.have.length(2);
         expect(items[0].name).to.equal('White Wine');
+        expect(items[0].owner).to.be.ok;
         done();
       });
     });
@@ -113,7 +114,7 @@ describe('Item', function(){
       var userId = Mongo.ObjectID('000000000000000000000001');
       Item.remove('a00000000000000000000001', userId, function(){
         Item.findById('a00000000000000000000001', function(err, item){
-          console.log(item);
+          // console.log(item);
           expect(item).to.be.null;
           done();
         });
