@@ -47,7 +47,7 @@ Item.findForSale = function(query, cb){
     if(items.length){
       async.map(items, getOwnerInfo, cb);
     }else{
-      cb();
+      cb(err, items);
     }
   });
 };

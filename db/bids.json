@@ -14,4 +14,12 @@
   "offerOwnerId" : {"$oid":"000000000000000000000002"},
   "isOpen" : true
 }
+{
+  "_id" : {"$oid":"b00000000000000000000003"},
+  "itemUpForBidId" : {"$oid":"a00000000000000000000006"},
+  "itemOfferedId" : {"$oid":"a00000000000000000000001"},
+  "upForBidOwnerId" : {"$oid":"000000000000000000000002"},
+  "offerOwnerId" : {"$oid":"000000000000000000000001"},
+  "isOpen" : true
+}
 
