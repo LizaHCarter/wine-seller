@@ -54,7 +54,7 @@ describe('User', function(){
 
   describe('.findOneAndItems', function(){
     it('should find a specific user', function(done){
-      User.findOneAndItems({email:'nodeapptest+bob@gmail.com'}, function(err, trader, biddableItems, saleItems){
+      User.findOneAndItems('nodeapptest+bob@gmail.com', function(err, trader, biddableItems, saleItems){
         expect(trader.email).to.equal('nodeapptest+bob@gmail.com');
         expect(biddableItems).to.have.length(1);
         expect(saleItems).to.have.length(1);
