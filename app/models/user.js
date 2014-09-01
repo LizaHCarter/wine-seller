@@ -3,7 +3,7 @@
 var bcrypt = require('bcrypt'),
     Mongo  = require('mongodb'),
     Message = require('./message'),
-    _      = require('underscore-contrib');
+    _      = require('lodash');
 
 function User(){
 }
@@ -15,7 +15,7 @@ Object.defineProperty(User, 'collection', {
 User.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
   User.collection.findOne({_id:_id}, function(err, obj){
-    cb(err, _.merge(User.prototype, obj));
+    cb(err, _.create(User.prototype, obj));
   });
 };
 
