@@ -1,21 +1,21 @@
 extends ../shared/template
 block content
   h2 Bid Page
-    .row
-      .col-xs-12
-        table.table.table-border
-          thead Item
-            tr
-              th Photo
-              th Name
-              th Location
-              th Description
-          tbody
-            tr
-              td.item-photo(style='background-image:url(#{item.photo})')
-              td: a(href='/bid/#{item._id}')= item.name
-              td= item.location
-              td= item.description
+  .row
+    .col-xs-12
+      table.table.table-bordered
+        thead
+          tr
+            th Photo
+            th Name
+            th Location
+            th Description
+        tbody
+          tr
+            td.item-photo(style='background-image:url(#{item.photo})')
+            td: a(href='/bid/#{item._id}')= item.name
+            td= item.location
+            td= item.description
   if user._id.toString() === item.ownerId.toString()
     .row
       .col-xs-12

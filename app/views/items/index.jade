@@ -1,6 +1,6 @@
 extends ../shared/template
 block content
-  h2 Profile
+  h3#marketplace Marketplace
   .panel.panel-default
     .panel-body
       .row
@@ -8,20 +8,21 @@ block content
           #marketplace-map
       .row
         .col-xs-12
-          table.table
-            thead
-              tr
-                th Photo
-                th Name
-                th Location
-                th Description
-            tbody
-              each item in items
-                tr.item(data-loc='#{item.location}', data-lat='#{item.lat}', data-lng='#{item.lng}')
-                  td.item-photo(style='background-image:url(#{item.photo})')
-                  td: a(href='/bid/#{item._id}')= item.name
-                  td= item.location
-                  td= item.description
+          .marketplace-table
+            table.table.table-bordered
+              thead
+                tr
+                  th Photo
+                  th Name
+                  th Location
+                  th Description
+              tbody
+                each item in items
+                  tr.item(data-loc='#{item.location}', data-lat='#{item.lat}', data-lng='#{item.lng}')
+                      td.item-photo(style='background-image:url(#{item.photo})')
+                      td: a(href='/bid/#{item._id}')= item.name
+                      td= item.location
+                      td= item.description
 
 block scripts
   script(src='/js/user/items-index.js')
