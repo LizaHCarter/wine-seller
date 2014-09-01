@@ -28,7 +28,7 @@ exports.tags = function(query, tags){
 exports.sort = function(query, name, display){
   var order = query.order ? query.order * -1 : 1,
       tag = query.tag ? '&tag=' + query.tag : '',
-      link = '<a href="/marketplace?sort=' + name + '&order=' + order + tag + '">' + display + '</a>';
+      link = '<a "class"="marketplace-date" "href="/marketplace?sort=' + name + '&order=' + order + tag + '">' + display + '</a>';
   return link;
 };
 

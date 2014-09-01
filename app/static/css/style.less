@@ -1,19 +1,34 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat);
+@import url(http://fonts.googleapis.com/css?family=Berkshire+Swash);
 @bidCards: #120F30;
 @bidButton: #ebebeb;
 @themeBlue: #0f1c3c;
 @themeRed: #711a1a;
 
+body{
+  color: @themeBlue;
+}
+
+#brand{
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 50px;
+}
 .navbar{
   background-color: @themeBlue;
   border-radius: 0;
+}
+
+.navbar form button{
+  background-color: @themeRed;
+  border: 2px solid white;
 }
 
 #marketplace{
   text-align: center;
   color: white;
   background-color: @themeRed;
-  padding: 10px;
-  margin-top: 3px;
+  padding: 15px;
+  margin-top: 0;
 }
 
 #marketplace-map{
@@ -38,6 +53,93 @@
 
 #marketplace-map {
   height: 400px;
+}
+
+#userTable{
+  border: 2px solid @themeBlue;
+}
+
+#userTable th{
+  border: 1px solid @themeBlue;
+  color: white;
+  background-color: @themeRed;
+}
+
+#userTable td{
+  border: 1px solid @themeBlue;
+  height: 120px;
+  vertical-align: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#marketplace-table th {
+  border: 1px solid @themeBlue;
+  color: white;
+  background-color: @themeRed;
+}
+
+#marketplace-table a{
+  color: @themeBlue;
+}
+
+.marketplace-date a{
+  color: white;
+
+}
+
+#marketplace-table a:hover{
+  color: white;
+  background-color: @themeRed;
+}
+#marketplace-table .sort{
+  color: white;
+}
+
+#addWine{
+  color: @themeBlue;
+}
+
+#newItem{
+  border: 2px solid @themeBlue;
+  padding: 5px;
+}
+
+#openAuctions thead, tbody, th, td{
+  border: 1px solid @themeBlue;
+}
+
+#winesOnBid{
+  border: 2px solid @themeBlue;
+}
+
+#profileTable{
+  border: 2px solid @themeBlue;
+  padding: 5px;
+}
+
+.userPhoto{
+  background-size: cover;
+  height: 100%;
+}
+
+#marketplace-table td {
+  border: 1px solid @themeBlue;
+}
+
+#messagesTable{
+  border: 3px solid @themeBlue;
+}
+
+#messagesTable th{
+  border: 1px solid @themeBlue;
+  color: white;
+  background-color: @themeRed;
+}
+
+#messagesTable td{
+  border: 1px solid @themeBlue;
+  background-color: white;
 }
 
 #bid {
@@ -177,6 +279,7 @@
 
 .navbar {
   margin: 0px;
+  padding: 15px;
 }
 
 .homePage {

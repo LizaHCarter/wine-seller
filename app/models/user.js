@@ -46,8 +46,8 @@ User.findByEmail = function(email, cb){
 
 User.findOneAndItems = function(email, cb){
   User.collection.findOne({email:email}, function(err, trader){
-    console.log(email);
-    console.log(trader);
+    // console.log(email);
+    // console.log(trader);
     if(!trader){return cb();}
     require('./item').collection.find({ownerId:trader._id, isBiddable: true}).toArray(function(err, traderBiddableItems){
       require('./item').collection.find({ownerId:trader._id, onSale: true}).toArray(function(err2, traderOnSaleItems){

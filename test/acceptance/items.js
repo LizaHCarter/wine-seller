@@ -82,6 +82,16 @@ describe('users', function(){
         done();
       });
     });
+    it('should redirect to marketplace (user not authorized to view page)', function(done){
+      request(app)
+      .get('/trade/a00000000000000000000006')
+      .set('cookie', cookie)
+      .end(function(err, res){
+        expect(res.status).to.equal(302);
+        expect(res.headers.location).to.equal('/marketplace');
+        done();
+      });
+    });
   });
 
   describe('put /trade', function(){

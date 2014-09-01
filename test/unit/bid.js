@@ -55,6 +55,15 @@ describe('Bid', function(){
     });
   });
 
+  describe('.findById', function(){
+    it('should find a bid by its Id', function(done){
+      Bid.findById('b00000000000000000000001', function(err, b){
+        expect(b).to.be.ok;
+        done();
+      });
+    });
+  });
+
   describe('.accept', function(){
     it('should close auction and change ownership of items', function(done){
       var userId = Mongo.ObjectID('000000000000000000000001');
