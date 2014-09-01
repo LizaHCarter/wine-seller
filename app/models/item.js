@@ -13,6 +13,7 @@ function Item(o){
   this.tags = o.tags.split(',').map(function(s){return s.trim();});
   this.photo = o.photo;
   this.ownerId = o.ownerId;
+  this.mapMarker = o.mapMarker;
   this.isBiddable = true;
   this.onSale = false;
   this.datePosted = new Date();
@@ -47,7 +48,7 @@ Item.findForSale = function(query, cb){
     if(items.length){
       async.map(items, getOwnerInfo, cb);
     }else{
-      cb();
+      cb(err, items);
     }
   });
 };

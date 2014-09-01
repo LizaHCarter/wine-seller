@@ -40,6 +40,7 @@ block content
     .panel-body#addWine
       .row
         .col-xs-4
+<<<<<<< HEAD
           h4#addWineBox Add a Wine
           form#newItem(role='form', method='post', action='/items')
             .form-group
@@ -56,6 +57,30 @@ block content
               input.form-control(name='location', type='text', placeholder='Nashville, TN')
             .form-group
               label Description
+=======
+          h5#addWineBox Add a Wine
+            form#newItem(role='form', method='post', action='/items')
+              .form-group
+                label Name
+                input.form-control(name='name', type='text', placeholder='Red Wine')
+              .form-group
+                label Photo
+                input.form-control(name='photo', type='text', placeholder='http://example.com/pic.jpg')
+              .form-group
+                label Tags
+                input.form-control(name='tags', type='text', placeholder='red wine, 1998, Nappa Valley')
+              .form-group
+                label Location
+                input.form-control(name='location', type='text', placeholder='Nashville, TN')
+              .form-group
+                label Category
+                select.form-control(name='mapMarker')
+                  option(value='/img/map_markers/default.png') Misc.
+                  option(value='/img/map_markers/red.png') Red
+                  option(value='/img/map_markers/white.png') White
+              .form-group
+                label Description
+>>>>>>> c7af5d6d2181305de0f20f60173a6ae9f11df340
                 textarea.form-control(name='description')
               button#submitItem.btn.btn-default(type='submit') Add Vintage
 

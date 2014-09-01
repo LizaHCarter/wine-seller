@@ -52,10 +52,21 @@ describe('User', function(){
     });
   });
 
-  describe('.findOne', function(){
+  describe('.findByEmail', function(){
     it('should find a specific user', function(done){
-      User.findOne({email:'nodeapptest+bob@gmail.com'}, function(err, user){
+      User.findByEmail('nodeapptest+bob@gmail.com', function(err, user){
         expect(user.email).to.equal('nodeapptest+bob@gmail.com');
+        done();
+      });
+    });
+  });
+
+  describe('.findOneAndItems', function(){
+    it('should find a specific user', function(done){
+      User.findOneAndItems('nodeapptest+bob@gmail.com', function(err, trader, biddableItems, saleItems){
+        expect(trader.email).to.equal('nodeapptest+bob@gmail.com');
+        expect(biddableItems).to.have.length(1);
+        expect(saleItems).to.have.length(1);
         done();
       });
     });

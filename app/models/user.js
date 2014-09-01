@@ -3,7 +3,7 @@
 var bcrypt = require('bcrypt'),
     Mongo  = require('mongodb'),
     Message = require('./message'),
-    _      = require('underscore-contrib');
+    _      = require('lodash');
 
 function User(){
 }
@@ -15,7 +15,7 @@ Object.defineProperty(User, 'collection', {
 User.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
   User.collection.findOne({_id:_id}, function(err, obj){
-    cb(err, _.merge(User.prototype, obj));
+    cb(err, _.create(User.prototype, obj));
   });
 };
 
@@ -36,6 +36,27 @@ User.authenticate = function(o, cb){
   });
 };
 
+User.findAll = function(cb){
+  User.collection.find().toArray(cb);
+};
+
+User.findByEmail = function(email, cb){
+  User.collection.findOne({email:email}, cb);
+};
+
+User.findOneAndItems = function(email, cb){
+  User.collection.findOne({email:email}, function(err, trader){
+    // console.log(email);
+    // console.log(trader);
+    if(!trader){return cb();}
+    require('./item').collection.find({ownerId:trader._id, isBiddable: true}).toArray(function(err, traderBiddableItems){
+      require('./item').collection.find({ownerId:trader._id, onSale: true}).toArray(function(err2, traderOnSaleItems){
+        cb(null, trader, traderBiddableItems, traderOnSaleItems);
+      });
+    });
+  });
+};
+
 User.prototype.unread = function(cb){
   Message.unread(this._id, cb);
 };
@@ -48,14 +69,6 @@ User.prototype.save = function(o, cb){
   });
   delete this.unread;
   User.collection.save(self, cb);
-};
-
-User.findAll = function(cb){
-  User.collection.find().toArray(cb);
-};
-
-User.findOne = function(filter, cb){
-  User.collection.findOne(filter, cb);
 };
 
 User.prototype.messages = function(cb){
