@@ -158,6 +158,7 @@ body{
 #profilePanel2 {
   background-color: @themeBlue;
 }
+
 /////// Trade Item block  ///////
 
 #tradePage {
@@ -225,6 +226,42 @@ body{
 #aname {
   position: relative;
   bottom: 25px;
+
+#nameTh {
+  position: relative;
+  background-color: @themeRed;
+}
+
+#aname {
+  position: relative;
+  bottom: 25px;
+  left: 15%;
+  color: @themeGray;
+  text-decoration:none;
+  text-align: center;
+  padding: 3px;
+}
+
+#aname:hover {
+  text-decoration: underline;
+}
+
+#ownerInfo {
+  position: relative;
+}
+
+#infoBorder td {
+  border: 1px solid @themeBlue;
+}
+
+#infoBorder {
+  background-color: @themeRed;
+}
+
+.profile-photo {
+  height: 150px;
+  background-size: cover;
+}
   left: 15%;
   color: @themeGray;
   text-decoration:none;
@@ -379,10 +416,85 @@ body{
   text-align: center;
 }
 
-///// make trade page ///////
+///// make other trader page ///////
 
+#panelRED {
+  margin-top: 10px;
+  background-color: @themeRed;
+  position: relative;
+}
 
+#traderTh {
+  position: relative;
+  background-color: @themeBlue;
+}
 
+#traderName {
+  position: relative;
+  bottom: 25px;
+  left: 15%;
+  color: @themeGray;
+  text-decoration:none;
+  text-align: center;
+  padding: 3px;
+}
+
+#traderInfo {
+  position: relative;
+  color: @themeRed;
+}
+
+#traderBorder td {
+  border: 1px solid @themeGray;
+}
+
+#traderBorder {
+  background-color: @themeBlue;
+}
+
+.trader-photo {
+  height: 150px;
+  background-size: cover;
+}
+
+#userItems th {
+  background-color: @themeGray;
+  text-align: center;
+  border: 1px solid @themeBlue;
+}
+
+#userItems td{
+  background-color: @themeGray;
+  border: 1px solid @themeBlue;
+}
+
+#userItems {
+  margin: 0px;
+  text-align: center;
+}
+
+.userItemPhoto {
+  height: 150px;
+  background-size: cover;
+}
+
+#userSaleItems th {
+  background-color: @themeGray;
+  text-align: center;
+  border: 1px solid @themeBlue;
+}
+
+#userSaleItems td{
+  background-color: @themeGray;
+  border: 1px solid @themeBlue;
+}
+
+#userSaleItems {
+  margin: 0px;
+  text-align: center;
+}
+
+///////
 
 #profileTable{
   border: 2px solid @themeBlue;
