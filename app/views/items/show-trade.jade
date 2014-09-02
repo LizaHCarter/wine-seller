@@ -1,44 +1,82 @@
 extends ../shared/template
 block content
-  h2 Confirm Trade
   .panel.panel-default
-    .panel-body
+    .panel-body#tradePage
       .row
-        .col-xs-6
-          h5 Wine For Trade
-          table.table
+        .col-xs-12.col-md-3#itemInfo
+          table.table.table-hover#itemBorder
+            thead
+              tr
+                th#tradeTh: a#tradeName(href='#')= data.saleItem.name
+                th.saleItem-photo(style='background-image:url(#{data.saleItem.photo});')
             tbody
-              tr
-                td Photo
-                td.item-photo(style='background-image:url(#{data.saleItem.photo})')
-              tr
-                td Name:
-                td= data.saleItem.name
-              tr
-                td Location
-                td= data.saleItem.location
-              tr
-                td Description
-                td= data.saleItem.description
-        .col-xs-6
-          h5 Bids
-          form(role='form', method='post', action='/trade')
-            input(type='hidden', name='_method', value='put')
-            table.table
-              thead
-                tr
-                  th Photo
-                  th Name
-                  th Description
-                  th Select
-              tbody
-                each bid in data.bids
+              each prop in Object.keys(data.saleItem)
+                unless prop === '_id' || prop === 'lat' || prop === 'photo' || prop === 'lat' || prop === 'lng' || prop === 'ownerId' || prop === 'isBiddable' || prop === 'onSale' || prop === 'mapMarker'
                   tr
-                    td.item-photo(style='background-image:url(#{bid.item.photo});')
-                    td= bid.item.name
-                    td= bid.item.description
-                    td: input(type='radio', name='winningBid', value='#{bid._id}')
-            button.btn.btn-primary(type='submit') Trade
+                    td= prop.charAt(0).toUpperCase() + prop.substring(1)
+                    td= data.saleItem[prop]
+
+        .col-xs-4.col-md-9
+          .table-container
+            form(role='form', method='post', action='/trade')
+              input(type='hidden', name='_method', value='put')
+              h4.table-header.red-head#offers Bids
+              table.table.table-hover.tb-container
+                thead
+                  tr
+                    th Photo
+                    th Type
+                    th Description
+                    th Location
+                    th Select
+                tbody
+                  each bid in data.bids
+                    tr
+                      td.item-photo(style='background-image:url(#{bid.item.photo});')
+                      td= bid.item.name
+                      td= bid.item.description
+                      td= bid.item.location
+                      td: input(type='radio', name='winningBid', value='#{bid._id}')
+              button.btn2(type='submit') Trade
+
+      //-.row
+        //-.col-xs-6.col-md-4
+          //-.tb-container
+            //-h4.table-header Wine For Trade
+            //-table.table.table-hover
+              //-tbody
+                //-tr
+                  //-td Photo
+                  //-td.item-photo(style='background-image:url(#{data.saleItem.photo})')
+                //-tr
+                  //-td Name:
+                  //-td= data.saleItem.name
+                //-tr
+                  //-td Location
+                  //-td= data.saleItem.location
+                //-tr
+                  //-td Description
+                  //-td= data.saleItem.description
+        //-.col-xs-6.col-md-8
+          //-.table-container
+            //-form(role='form', method='post', action='/trade')
+              //-input(type='hidden', name='_method', value='put')
+              //-h4.table-header Bids
+              //-table.table
+                //-thead
+                  //-tr
+                    //-th Photo
+                    //-th Name
+                    //-th Description
+                    //-th Select
+                //-tbody
+                  //-each bid in data.bids
+                    //-tr
+                      //-td.item-photo(style='background-image:url(#{bid.item.photo});')
+                      //-td= bid.item.name
+                      //-td= bid.item.description
+                      //-td: input(type='radio', name='winningBid', value='#{bid._id}')
+              //-button.btn(type='submit') Trade
 
 block scripts
 
