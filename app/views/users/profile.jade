@@ -1,113 +1,113 @@
 extends ../shared/template
 block content
-  h2= user.name
   .panel.panel-default
-    .panel-body
+    .panel-body#profilePanel
       .row
-        .col-xs-12.col-md-4
-          table.table-bordered
-            thead
-              th
-              th
-            tbody#profileTable
-              td
-                .col-xs-6.col-md-2
-                  .profile-photo(style='background-image:url(#{user.photo});')
-              td
-                .col-xs-6.col-md-2
-                  .profile-email= user.email
-                  .profile-phone= user.phone
-                  .profile-bio= user.bio
-                  .profile-favorite Favorite wine
-                    h5= user.favorite
-                  h5: a(href='/profile/edit') Update Profile
-
-        .col-xs-12.col-md-8
-          h4 Open Auctions
-          table.table.table-bordered#openAuctions
+        .col-xs-12.col-md-3#ownerInfo
+          table.table.table-hover#infoBorder
             thead
               tr
-                th Photo
-                th Name
-                th # Bids
+                th#nameTh: a#aname(href='/profile/edit')= user.name
+                  span <br/> (update profile)
+                th.profile-photo(style='background-image:url(#{user.photo});')
             tbody
-              each item in items
-                if item.onSale
+              each prop in Object.keys(user)
+                unless prop === '_id' || prop === 'password' || prop === 'photo' || prop === 'isPublic' || prop === 'tagline' || prop === 'name' || prop === 'unread'
                   tr
-                    td.item-photo(style='background-image:url(#{item.photo});')
-                    td: a(href='/trade/#{item._id}')= item.name
-                    td= item.numBids
-    .panel-body#addWine
+                    td= prop.charAt(0).toUpperCase() + prop.substring(1)
+                    td= user[prop]
+
+        .col-xs-12.col-md-9
+          .tb-container
+            h4.table-header Open Auctions
+            table.table.table-hover#auctionsTable
+              thead
+                tr
+                  th Photo
+                  th Type
+                  th Description
+                  th Total Bids
+              tbody
+                each item in items
+                  if item.onSale
+                    tr
+                      td.item-photo(style='background-image:url(#{item.photo});')
+                      td: a(href='/trade/#{item._id}')= item.name
+                      td=item.description.slice(0,30) + '...'
+                      td= item.numBids
+
+    .panel-body#profilePanel2
       .row
-        .col-xs-4
-          h4#addWineBox Add a Wine
-          form#newItem(role='form', method='post', action='/items')
-            .form-group
-              label Name
-              input.form-control(name='name', type='text', placeholder='Red Wine')
-            .form-group
-              label Photo
-              input.form-control(name='photo', type='text', placeholder='http://example.com/pic.jpg')
-            .form-group
-              label Tags
-              input.form-control(name='tags', type='text', placeholder='red wine, 1998, Nappa Valley')
-            .form-group
-              label Location
-              input.form-control(name='location', type='text', placeholder='Nashville, TN')
-            .form-group
-              label Category
-              select.form-control(name='mapMarker')
-                option(value='/img/map_markers/default.png') Default
-                option(value='/img/map_markers/red.png') Red
-                option(value='/img/map_markers/white.png') White
-            .form-group
-              label Description
-              textarea.form-control(name='description')
-            button#submitItem.btn.btn-default(type='submit') Add Vintage
+        .col-xs-12.col-md-3
+          #addBottleBox
+            h4#addBottle Add a Bottle
+            form#newItem(role='form', method='post', action='/items')
+              .form-group
+                label Name
+                input.form-control.wine-bar(name='name', type='text', placeholder='Red Wine')
+              .form-group
+                label Photo
+                input.form-control.wine-bar(name='photo', type='text', placeholder='http://example.com/pic.jpg')
+              .form-group
+                label Tags
+                input.form-control.wine-bar(name='tags', type='text', placeholder='red wine, 1998, Nappa Valley')
+              .form-group
+                label Location
+                input.form-control.wine-bar(name='location', type='text', placeholder='Nashville, TN')
+              .form-group
+                label Category
+                select.form-control.wine-bar(name='mapMarker')
+                  option(value='/img/map_markers/default.png') Other
+                  option(value='/img/map_markers/red.png') Red
+                  option(value='/img/map_markers/white.png') White
+              .form-group
+                label Description
+                textarea.form-control.wine-bar(name='description')
+              button#submitItem.btn.btn-default(type='submit') Add Vintage
 
-        .col-xs-12.col-md-8
-          h4 Wines on Bid
-          table.table.table-bordered#winesOnBid
-            thead
-              tr
-                th Photo
-                th Name
-            tbody
-              each item in items
-                unless item.onSale
-                  if (!item.isBiddable)
-                    tr
-                      td.item-photo(style='background-image:url(#{item.photo});')
-                      td= item.name
+        .col-xs-12.col-md-5
+          .tb-container
+            h4.table-header.red-head My Cellar
+            table.table.table-hover#cellarTable
+              thead
+                tr
+                  th Photo
+                  th Name
+                  th Trade this Wine?
+                  th Drink It
+              tbody
+                each item in items
+                  unless item.onSale
+                    if item.isBiddable
+                      tr
+                        td.item-photo(style='background-image:url(#{item.photo});')
+                        td= item.name
+                        td
+                          form(method='post', action='/items/#{item._id}')
+                            input(type='hidden', name='_method', value='put')
+                            button.btn(type='submit') Trade
+                        td
+                          form(method='post', action='/delete/#{item._id}')
+                            input(type='hidden', name='_method', value='delete')
+                            button.btn(type='submit') Drink
 
-        .col-xs-12.col-md-8
-          h4 Cellar
-          table.table.table-bordered
-            thead
-              tr
-                th Photo
-                th Name
-                th Trade this Wine?
-                th Drink It
-            tbody
-              each item in items
-                unless item.onSale
-                  if item.isBiddable
-                    tr
-                      td.item-photo(style='background-image:url(#{item.photo});')
-                      td= item.name
-                      td
-                        form(method='post', action='/items/#{item._id}')
-                          input(type='hidden', name='_method', value='put')
-                          button(type='submit') Trade
-                      td
-                        form(method='post', action='/delete/#{item._id}')
-                          input(type='hidden', name='_method', value='delete')
-                          button(type='submit') Drink
-
-
-
-
+        .col-xs-12.col-md-4
+          .tb-container
+            h4.table-header.red-head Wines I'm Bidding
+            table.table.table-hover#winesOnBidTable
+              thead
+                tr
+                  th Photo
+                  th Type
+                  th Description
+              tbody
+                each item in items
+                  unless item.onSale
+                    if (!item.isBiddable)
+                      tr
+                        td.item-photo(style='background-image:url(#{item.photo});')
+                        td= item.name
+                        td= item.description
 
 block scripts
   script(src='/js/user/profile.js')
