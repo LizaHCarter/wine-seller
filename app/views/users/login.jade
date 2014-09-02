@@ -1,17 +1,22 @@
 extends ../shared/template
 block content
-  h2 Login
-  .row
-    .col-xs-6
-      form(role='form', method='post', action='/login')
-        .form-group
-          label(for='email') Email
-          input.form-control#email(type='email', name='email', autofocus=true)
-        .form-group
-          label(for='password') Password
-          input.form-control#password(type='password', name='password')
-        button.btn.btn-success(type='submit') Submit
-    .col-xs-6
+  body.backgroundImage
+    div.register
+      div.content-main
+        .row
+          .col-xs-12.col-md-3
+            h2.register Login
+              form.regLog(role='form', method='post', action='/login')
+                .form-group
+                  label(for='email')
+                  input.form-control.input-bar#email(type='email', name='email', autofocus=true, placeholder= 'Email')
+                .form-group
+                  label(for='password')
+                  input.form-control.input-bar#password(type='password', name='password', placeholder= 'Password')
+                button.btn(type='submit') Submit
+        .cheers Cheers!
+        .row
+          .col-xs-12.col-md-3
 
-block scripts
+  block scripts
 

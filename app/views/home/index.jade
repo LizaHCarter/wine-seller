@@ -1,6 +1,12 @@
 extends ../shared/template
 block content
-  .homePage(style='background-image: url("/img/wine_seller.png");')
+  body
+    .homePage
+      #goRegister: a(href= '/register') Register
+      #goLogin: a(href='/login') Login
+      .slogan . <br/> Bid.<br/> &nbsp &nbsp &nbsp Trade.<br/> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Drink...
+      
+
 block scripts
   script(src='/js/user/home.js')
 
