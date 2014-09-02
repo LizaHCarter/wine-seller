@@ -81,7 +81,7 @@ describe('users', function(){
       .send('email=nodeapptest%2Bbob%40gmail.com&password=1234')
       .end(function(err, res){
         expect(res.status).to.equal(302);
-        expect(res.headers.location).to.equal('/');
+        expect(res.headers.location).to.equal('/marketplace');
         done();
       });
     });

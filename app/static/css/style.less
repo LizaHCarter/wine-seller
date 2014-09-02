@@ -4,9 +4,19 @@
 @bidButton: #ebebeb;
 @themeBlue: #0f1c3c;
 @themeRed: #711a1a;
+@themeGray: #ECECEC;
 
+#brand:hover{
+  color: #711a1a;
+}
+
+#bs-navbar-collapse a:hover{
+  background-color: #711a1a;
+  color: white;
+}
 body{
   color: @themeBlue;
+  background-color: @themeGray;
 }
 
 #brand{
@@ -37,6 +47,10 @@ body{
 
 #marketplace-table{
   border: 3px solid @themeBlue;
+}
+
+.panel-body{
+  background-color: @themeGray;
 }
 
 .profile-photo {
@@ -271,7 +285,13 @@ body{
    background-image: url("/img/wine_cellar_bg.png");
    background-size: cover;
    background-repeat: no-repeat;
-
+ }
+ .cheers {
+   position: relative;
+   right: 635px;
+   top: 75px;
+   font-size: 100px;
+  font-family: 'Berkshire Swash', cursive;
  }
 }
 
@@ -285,8 +305,59 @@ body{
 .homePage {
    background-image: url("/img/wine_cellar_home.png");
    background-size: cover;
-   height: 1080px;
+   height: 975px;
+   position: relative;
+   margin: 0px auto;
 }
+
+#goRegister a {
+  color: @themeRed;
+  text-align: center;
+  font-size: 20px;
+  position: absolute;
+  left: 930px;
+  top: 500px;
+  /*font-family: 'Berkshire Swash', cursive;*/
+  font-size: 50px;
+  padding: 30px;
+}
+
+
+#goLogin a {
+  color: @themeRed;
+  text-align: center;
+  font-size: 20px;
+  position: absolute;
+  left: 530px;
+  top: 500px;
+  /*font-family: 'Berkshire Swash', cursive;*/
+  font-size: 50px;
+  padding: 30px;
+}
+
+#goLogin a:hover {
+  border: 1px solid @themeRed;
+  border-radius: 15%;
+}
+
+#goRegister a:hover {
+  border: 1px solid @themeRed;
+  border-radius: 15%;
+}
+
+.slogan {
+  position: absolute;
+  left: 540px;
+  top: 150px;
+  font-family: 'Berkshire Swash', cursive;
+  font-size: 45px;
+  color: @themeGray;
+
+}
+
+
+
+
 
 
 
