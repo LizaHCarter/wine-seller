@@ -41,24 +41,26 @@ body{
 
 #marketplace{
   text-align: center;
-  color: white;
+  color: @themeGray;
   background-color: @themeRed;
   padding: 15px;
-  margin-top: 0;
+  border: 2px solid  @themeBlue;
+}
+
+#redPanel {
+  background-color: @themeRed;
 }
 
 #marketplace-map{
   margin-bottom: 30px;
 }
 
-#marketplace-table{
-  border: 3px solid @themeBlue;
-}
-
 //profile/////////////
-
+#addWine {
+  background-color: @themeRed;
+}
 .panel-body{
-  background-color: @themeBlue;
+  background-color: @themeGray;
 }
 
 .profile-photo {
@@ -73,9 +75,15 @@ body{
   background-size: cover;
 }
 
+
+//marketplace map
 #marketplace-map {
+  margin-bottom: 0px;
+  margin-top: 0px;
   height: 400px;
+  border: 1px solid @themeBlue;
 }
+
 
 #userTable{
   border: 2px solid @themeBlue;
@@ -95,34 +103,225 @@ body{
   margin-bottom: auto;
 }
 
+//marketplace-table
 #marketplace-table th {
   border: 1px solid @themeBlue;
   color: white;
-  background-color: @themeRed;
+  background-color: @themeGray;
 }
 
-#marketplace-table a{
+#marketplace-table a {
   color: @themeBlue;
+  padding: 3px;
+  text-decoration: none;
+  border: 1px solid @themeRed;
+  border-radius: 15%;
+  display: inline-block;
+  margin: 0px 3px 0px 3px;
 }
 
-.marketplace-date a{
+.marketplace-date {
   color: white;
-
 }
 
 #marketplace-table a:hover{
-  color: white;
-  background-color: @themeRed;
-}
-#marketplace-table .sort{
-  color: white;
+  background-color: @themeBlue;
+  color: @themeGray;
 }
 
-#addWine{
+
+#marketplace-table th {
   color: @themeBlue;
+  text-align: center;
+}
+
+#marketplace-table td {
+  border: 1px solid @themeBlue;
+}
+
+.table-hover {
+  background-color: @themeGray;
+}
+
+#marketplace-table {
+  margin: 0px;
+  border: 1px solid @themeBlue;
+}
+//////// profile page ///////////
+
+#profilePanel {
+  margin-top: 10px;
+  background-color: @themeBlue;
+  position: relative;
+}
+
+#profilePanel2 {
+  background-color: @themeBlue;
+}
+
+/////// owner's block /////////
+
+#nameTh {
+  position: relative;
+  background-color: @themeRed;
+}
+
+#aname {
+  position: relative;
+  bottom: 25px;
+  left: 15%;
+  color: @themeGray;
+  text-decoration:none;
+  text-align: center;
+  padding: 3px;
+}
+
+#aname:hover {
+  text-decoration: underline;
+}
+
+#ownerInfo {
+  position: relative;
+}
+
+#infoBorder td {
+  border: 1px solid @themeBlue;
+}
+
+#infoBorder {
+  background-color: @themeRed;
+}
+
+.profile-photo {
+  height: 135px;
+  background-size: cover;
+}
+
+////// auctions table ///////
+
+.tb-container {
+  border: 3px solid @themeRed;
+}
+
+.table-header {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background-color: @themeGray;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid @themeBlue;
+}
+
+#auctionsTable th {
+  background-color: @themeGray;
+  text-align: center;
+  border: 1px solid @themeBlue;
+}
+
+#auctionsTable td{
+  background-color: @themeGray;
+  border: 1px solid @themeBlue;
+}
+
+#auctionsTable {
+  margin: 0px;
+  text-align: center;
+}
+
+#auctionsTable a {
+  color: @themeRed;
+  padding: 5px;
+  border: 1px solid @themeRed;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+#auctionsTable a:hover {
+  background-color: @themeBlue;
+  color: @themeGray;
+}
+
+////// add wine form ///////
+
+#addBottleBox {
+  position: relative;
+  padding: 20px;
+  top: -50px;
+  background-color: @themeGray;
+}
+
+#addBottle {
+  position: relative;
+  top: -10px;
+  background-color: @themeRed;
+  padding: 10px;
+  color: @themeGray;
+  border: 1px solid @themeBlue;
+  border-radius: 15px;
+  text-align: center;
 }
 
 #newItem{
+  border: 2px solid @themeBlue;
+  padding: 15px;
+  border-radius: 15px;
+}
+
+#newItem label {
+  color: @themeBlue;
+}
+
+.wine-bar {
+  border: 1px solid @themeRed;
+}
+
+///// wines out for bid table //////
+
+.red-head {
+  color: @themeRed;
+}
+
+#winesOnBidTable{
+  border: 1px solid @themeBlue;
+}
+
+#winesOnBidTable th {
+  background-color: @themeGray;
+  text-align: center;
+  border: 1px solid @themeBlue;
+}
+
+#winesOnBidTable td{
+  background-color: @themeGray;
+  border: 1px solid @themeBlue;
+}
+
+#winesOnBidTable {
+  margin: 0px;
+  text-align: center;
+}
+
+#cellarTable{
+  border: 1px solid @themeBlue;
+}
+
+#cellarTable th {
+  background-color: @themeGray;
+  text-align: center;
+  border: 1px solid @themeBlue;
+}
+
+#cellarTable td{
+  background-color: @themeGray;
+  border: 1px solid @themeBlue;
+}
+
+#cellarTable {
+  margin: 0px;
+  text-align: center;
+}
+
+#profileTable{
   border: 2px solid @themeBlue;
   padding: 5px;
 }
@@ -131,23 +330,12 @@ body{
   border: 1px solid @themeBlue;
 }
 
-#winesOnBid{
-  border: 2px solid @themeBlue;
-}
-
-#profileTable{
-  border: 2px solid @themeBlue;
-  padding: 5px;
-}
-
 .userPhoto{
   background-size: cover;
   height: 100%;
 }
 
-#marketplace-table td {
-  border: 1px solid @themeBlue;
-}
+// messages
 
 #messagesTable{
   border: 3px solid @themeBlue;
@@ -163,6 +351,8 @@ body{
   border: 1px solid @themeBlue;
   background-color: white;
 }
+
+// bids ///////
 
 #bid {
   margin: 10px;
@@ -216,6 +406,7 @@ body{
 }
 
 // views/user/edit
+
 #editProfile {
   background-color:@themeBlue;
 }
